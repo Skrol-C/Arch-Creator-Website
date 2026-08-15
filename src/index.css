@@ -1,0 +1,306 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap');
+
+:root {
+  /* Palette — paper & ink with brass accent */
+  --paper: #fdfbf7;
+  --paper-deep: #f6f1e6;
+  --ink: #2c2926;
+  --ink-soft: #5a554e;
+  --ink-faint: #8d877c;
+  --brass: #9a6b21;
+  --brass-strong: #7a5215;
+  --brass-bright: #b8860b;
+  --brass-soft: #f4ead4;
+  --brass-faint: #f8f1e1;
+  --line: rgba(44, 41, 38, 0.12);
+  --line-soft: rgba(44, 41, 38, 0.08);
+  --white: #ffffff;
+
+  /* Type */
+  --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Lato', 'Segoe UI', system-ui, -apple-system, sans-serif;
+
+  /* Motion — survey → converge → lock feel */
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.5, 1);
+  --ease-needle: cubic-bezier(0.1, 0.9, 0.2, 1);
+  --ease-converge: cubic-bezier(0.22, 0.8, 0.3, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Shape */
+  --nav-h: 4.5rem;
+  --max-w: 70rem;
+  --max-w-wide: 76rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
+  --shadow-card: 0 1px 2px rgba(44, 41, 38, 0.05), 0 12px 40px -16px rgba(44, 41, 38, 0.18);
+  --shadow-lift: 0 2px 4px rgba(44, 41, 38, 0.06), 0 24px 60px -20px rgba(44, 41, 38, 0.28);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-h) + 1rem);
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 1rem;
+  line-height: 1.65;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+
+::selection {
+  background: var(--brass);
+  color: var(--paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ---------- Shared shells ---------- */
+
+.shell {
+  width: 100%;
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 2.5rem);
+}
+
+.shell-wide {
+  max-width: var(--max-w-wide);
+}
+
+.section {
+  padding-block: clamp(4.5rem, 10vw, 8rem);
+}
+
+/* ---------- Section headers ---------- */
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+
+.kicker::before {
+  content: '';
+  width: 1.75rem;
+  height: 1px;
+  background: var(--brass);
+  flex: none;
+}
+
+.section-head {
+  margin-bottom: clamp(2.5rem, 6vw, 4rem);
+  max-width: 42rem;
+}
+
+.section-head--center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.section-head--center .kicker::after {
+  content: '';
+  width: 1.75rem;
+  height: 1px;
+  background: var(--brass);
+}
+
+.section-title {
+  font-size: clamp(2rem, 4.6vw, 3.25rem);
+  margin-top: 0.9rem;
+  text-wrap: balance;
+}
+
+.section-lede {
+  margin-top: 1.1rem;
+  font-size: clamp(1rem, 1.4vw, 1.125rem);
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+
+.section-title em,
+.section-lede em {
+  font-style: italic;
+  color: var(--brass-strong);
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 0.95rem 1.75rem;
+  border-radius: var(--radius-sm);
+  transition:
+    transform 0.25s var(--ease-out),
+    background-color 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--brass);
+  color: var(--paper);
+  box-shadow: 0 1px 2px rgba(122, 82, 21, 0.3), 0 10px 24px -10px rgba(154, 107, 33, 0.55);
+}
+
+.btn-primary:hover {
+  background: var(--brass-strong);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(122, 82, 21, 0.3), 0 16px 32px -12px rgba(154, 107, 33, 0.6);
+}
+
+.btn-ghost {
+  border: 1px solid var(--line);
+  color: var(--ink);
+  background: transparent;
+}
+
+.btn-ghost:hover {
+  border-color: rgba(154, 107, 33, 0.5);
+  color: var(--brass-strong);
+  transform: translateY(-1px);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn[disabled] {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn .chev {
+  transition: transform 0.25s var(--ease-out);
+}
+
+.btn:hover .chev {
+  transform: translateX(3px);
+}
+
+/* ---------- Reveal-on-scroll ---------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.7s var(--ease-converge),
+    transform 0.7s var(--ease-converge);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Rules & quotes ---------- */
+
+.rule {
+  border: none;
+  height: 1px;
+  background: var(--line-soft);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

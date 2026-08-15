@@ -1,0 +1,244 @@
+.header {
+  padding-top: calc(var(--nav-h) + clamp(4rem, 10vh, 6.5rem));
+  padding-bottom: clamp(3rem, 6vh, 4.5rem);
+}
+
+.headerInner {
+  max-width: 46rem;
+}
+
+.title {
+  margin-top: 1rem;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  letter-spacing: -0.02em;
+}
+
+.lede {
+  margin-top: 1.2rem;
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  color: var(--ink-soft);
+  max-width: 40rem;
+  line-height: 1.75;
+}
+
+/* ---------- Story ---------- */
+
+.story {
+  max-width: 46rem;
+}
+
+.storyPara {
+  font-size: clamp(1.05rem, 1.6vw, 1.175rem);
+  line-height: 1.85;
+  color: var(--ink-soft);
+  margin-bottom: 1.4rem;
+}
+
+.storyPara:first-child::first-letter {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 3.2em;
+  float: left;
+  line-height: 0.8;
+  padding-right: 0.55rem;
+  padding-top: 0.2rem;
+  color: var(--brass);
+}
+
+.storyPara:first-child {
+  color: var(--ink);
+  font-size: clamp(1.15rem, 1.9vw, 1.35rem);
+}
+
+/* ---------- Values ---------- */
+
+.values {
+  margin-top: clamp(3.5rem, 8vw, 5.5rem);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.value {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  padding: 1.75rem;
+  position: relative;
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+}
+
+.value:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card);
+}
+
+.valueIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: var(--radius-sm);
+  background: var(--brass-soft);
+  color: var(--brass-strong);
+}
+
+.valueStep {
+  position: absolute;
+  top: 1.6rem;
+  right: 1.75rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.6rem;
+  color: var(--line);
+}
+
+.valueName {
+  margin-top: 1.2rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.valueBody {
+  margin-top: 0.6rem;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
+/* ---------- Contact ---------- */
+
+.contact {
+  background: var(--paper-deep);
+  border-top: 1px solid var(--line-soft);
+}
+
+.contactCard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2.5rem, 6vw, 4.5rem);
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: clamp(2rem, 5vw, 3.5rem);
+}
+
+.contactTitle {
+  margin-top: 1rem;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+}
+
+.contactLede {
+  margin-top: 1rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+
+.mailBtn {
+  margin-top: 1.75rem;
+}
+
+.newsHead {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+
+.newsLed {
+  margin-top: 0.9rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+  font-size: 0.9375rem;
+}
+
+.newsForm {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 0.7rem;
+}
+
+.newsInput {
+  flex: 1;
+  min-width: 0;
+  font: inherit;
+  font-size: 0.9375rem;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 0.8rem 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.newsInput::placeholder {
+  color: var(--ink-faint);
+}
+
+.newsInput:focus {
+  outline: 2px solid var(--brass);
+  outline-offset: 0;
+  border-color: var(--brass);
+}
+
+.newsDone {
+  margin-top: 1.5rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--brass-strong);
+}
+
+.newsNote {
+  margin-top: 0.85rem;
+  font-size: 0.8125rem;
+  color: var(--ink-faint);
+}
+
+.socialRow {
+  margin-top: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.socialHead {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.socialLink {
+  font-size: 0.9375rem;
+  color: var(--ink-soft);
+  transition: color 0.2s ease;
+}
+
+.socialLink:hover {
+  color: var(--brass-strong);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 52rem) {
+  .contactCard {
+    grid-template-columns: 1fr;
+  }
+
+  .newsForm {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 40rem) {
+  .values {
+    grid-template-columns: 1fr;
+  }
+}
