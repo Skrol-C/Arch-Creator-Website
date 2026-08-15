@@ -92,8 +92,8 @@ export function Pricing() {
                 <thead>
                   <tr>
                     <th className={styles.thLabel}>Feature</th>
-                    <th className={styles.thFree}>Free</th>
-                    <th className={styles.thPro}>Pro</th>
+                    <th className={styles.thFree}>{p.tiers[0].name}</th>
+                    <th className={styles.thPro}>{p.tiers[1].name}</th>
                   </tr>
                 </thead>
                 <tbody>

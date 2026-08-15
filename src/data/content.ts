@@ -73,7 +73,7 @@ export const home = {
     ctaPrimary: { label: 'Download free', to: '/pricing' },
     ctaSecondary: { label: 'Explore the app', to: '/features' },
   },
-  pills: ['Free to start', 'One-time Pro', 'Offline first', 'Windows', 'Your data stays yours'],
+  pills: ['Free to start', 'One-time Keystone', 'Offline first', 'Windows', 'Your data stays yours'],
   modules: [
     {
       icon: LuGlobe,
@@ -106,7 +106,7 @@ export const home = {
     author: 'Arch Studios',
   },
   cta: {
-    title: 'Start free. Unlock Pro when your world outgrows free.',
+    title: 'Start free. Unlock Keystone when your world outgrows free.',
     lede: 'Download Arch-Creator free and feel the difference. When you are ready, unlock the full suite for a single, fair price — or add Quill, the continuity companion.',
     primary: { label: 'See pricing', to: '/pricing' },
   },
@@ -225,26 +225,26 @@ export const pricing = {
       cta: { label: 'Download free', href: 'releases' },
     },
     {
-      name: 'Pro',
+      name: 'Keystone',
       price: '$60',
       per: 'one-time',
       blurb: 'Unlimited worlds, characters and lore — every limit removed, forever.',
       highlights: ['Unlimited everything', 'Advanced calendars', 'Fight Builder'],
-      cta: { label: 'Unlock Pro', href: 'proPurchase' },
+      cta: { label: 'Unlock Keystone', href: 'proPurchase' },
       highlight: true,
     },
     {
       name: 'Quill',
       price: '$30',
       per: 'add-on',
-      blurb: 'The full continuity assistant — all five hats, works with Free or Pro.',
+      blurb: 'The full continuity assistant — all five hats, works with Free or Keystone.',
       highlights: ['Five hats', 'Continuity & story-state', 'Analyst & narrative'],
       cta: { label: 'Add Quill', href: 'quillPurchase' },
     },
   ],
   table: {
-    title: 'Free vs Pro, side by side',
-    lede: 'The same app either way — Pro simply removes every limit and unlocks the deeper tools.',
+    title: 'Free vs Keystone, side by side',
+    lede: 'The same app either way — Keystone simply removes every limit and unlocks the deeper tools.',
     groups: [
       {
         name: 'Worlds & lore',
@@ -317,8 +317,8 @@ export const pricing = {
     cta: { label: 'Download free', href: 'releases' },
   },
   pro: {
-    kicker: 'The Pro plan',
-    name: 'Pro',
+    kicker: 'The Keystone plan',
+    name: 'Keystone',
     price: '$60',
     per: 'one-time',
     title: 'Unlimited, unhindered.',
@@ -332,7 +332,7 @@ export const pricing = {
       'Every theme, plus the custom theme builder',
       'Priority support',
     ],
-    cta: { label: 'Unlock Pro', href: 'proPurchase' },
+    cta: { label: 'Unlock Keystone', href: 'proPurchase' },
   },
   quill: {
     kicker: 'The assistant',
@@ -394,9 +394,9 @@ export const pricing = {
   compare: {
     kicker: 'Compare',
     title: 'Own it once. Every other tool bills you forever.',
-    lede: 'We priced Arch-Creator the way we\u2019d want it priced — a free start, a fair one-time Pro, and no subscription to feed. Here\u2019s how that stacks up against the field.',
+    lede: 'We priced Arch-Creator the way we\u2019d want it priced — a free start, a fair one-time Keystone, and no subscription to feed. Here\u2019s how that stacks up against the field.',
     tools: [
-      { name: 'Arch-Creator', model: 'Free + one-time', price: '$60 Pro · $30 Quill', note: 'Worldbuilding + writing', highlight: true },
+      { name: 'Arch-Creator', model: 'Free + one-time', price: '$60 Keystone · $30 Quill', note: 'Worldbuilding + writing', highlight: true },
       { name: 'Scrivener', model: 'One-time', price: '~$60', note: 'Manuscript tool' },
       { name: 'ForgeTales', model: 'Free + one-time', price: 'Founder plan', note: 'Worldbuilding' },
       { name: 'Plottr', model: 'One-time or sub', price: '~$15/mo or ~$199', note: 'Outlining' },
@@ -409,7 +409,7 @@ export const pricing = {
       lede: 'What you actually pay as the years add up.',
       years: [1, 3, 5],
       rows: [
-        { name: 'Arch-Creator Pro', values: [60, 60, 60], highlight: true },
+        { name: 'Arch-Creator Keystone', values: [60, 60, 60], highlight: true },
         { name: 'Scrivener', values: [60, 60, 60] },
         { name: 'Plottr lifetime', values: [199, 199, 199] },
         { name: 'World Anvil · Sage', values: [105, 315, 525] },
@@ -499,7 +499,7 @@ export const roadmap = {
         {
           icon: LuShieldCheck,
           title: 'Licensing launch',
-          body: 'Lemon Squeezy checkout for Pro and Quill — one-time, no subscription, no account.',
+          body: 'Lemon Squeezy checkout for Keystone and Quill — one-time, no subscription, no account.',
           tags: ['Platform'],
         },
         {
