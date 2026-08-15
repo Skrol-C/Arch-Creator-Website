@@ -14,7 +14,7 @@ import { Reveal } from '../components/ui/Reveal'
 import styles from './Pricing.module.css'
 
 const hrefFor = (key: string) =>
-  key === 'releases' ? urls.releases : key === 'proPurchase' ? urls.proPurchase : urls.quillPurchase
+  key === 'download' ? urls.download : key === 'proPurchase' ? urls.proPurchase : urls.quillPurchase
 
 const MatrixCell = ({ v }: { v: string }) => {
   if (v === 'yes') return <LuCheck size={15} className={styles.mYes} aria-label="Yes" />

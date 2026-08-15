@@ -63,13 +63,8 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a
-                  className={`${styles.colLink} ${styles.social}`}
-                  href={urls.releases}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Releases <LuArrowUpRight size={14} />
+                <a className={`${styles.colLink} ${styles.social}`} href={urls.download}>
+                  <LuArrowUpRight size={14} /> Download installer
                 </a>
               </li>
             </ul>

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { LuArrowRight, LuCheck } from 'react-icons/lu'
-import { home, manuscript, site } from '../data/content'
+import { home, manuscript, site, urls } from '../data/content'
 import { Reveal } from '../components/ui/Reveal'
 import styles from './Home.module.css'
 
@@ -36,10 +36,10 @@ export function Home() {
           </Reveal>
           <Reveal delay={240}>
             <div className={styles.ctaRow}>
-              <Link to={hero.ctaPrimary.to} className="btn btn-primary">
+              <a href={urls.download} className="btn btn-primary">
                 {hero.ctaPrimary.label}
                 <LuArrowRight className="chev" size={14} />
-              </Link>
+              </a>
               <Link to={hero.ctaSecondary.to} className="btn btn-ghost">
                 {hero.ctaSecondary.label}
               </Link>
@@ -111,6 +111,46 @@ export function Home() {
               <span className={styles.exportLabel}>Exports</span>
               <span className={styles.exportItems}>.docx&ensp;·&ensp;.epub&ensp;·&ensp;.pdf</span>
             </p>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className={`section ${styles.motion}`}>
+        <div className="shell">
+          <Reveal>
+            <div className="section-head section-head--center">
+              <p className="kicker">In motion</p>
+              <h2 className="section-title">
+                The app, <em>in motion</em>.
+              </h2>
+              <p className="section-lede">
+                Arch-Creator is alive — from the moment it boots to the way a world opens. A short
+                look at the choreography, straight from the app.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal delay={120}>
+            <figure className={styles.motionFrame}>
+              <video
+                className={styles.motionVideo}
+                src="/video/app-montage.webm"
+                poster="/video/app-poster.jpg"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="auto"
+              >
+                Your browser does not support embedded video —{' '}
+                <a href="/video/app-montage.webm" download>
+                  watch the clip
+                </a>{' '}
+                instead.
+              </video>
+              <figcaption className={styles.motionCaption}>
+                Loading screen &rarr; your world &rarr; where the story lives
+              </figcaption>
+            </figure>
           </Reveal>
         </div>
       </section>

@@ -308,6 +308,37 @@
   color: var(--ink-soft);
 }
 
+/* ---------- In motion (video) ---------- */
+
+.motion {
+  background: var(--paper-deep);
+  border-block: 1px solid var(--line-soft);
+}
+
+.motionFrame {
+  max-width: 60rem;
+  margin-inline: auto;
+}
+
+.motionVideo {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: #0c0d11;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lift);
+}
+
+.motionCaption {
+  margin-top: 1.1rem;
+  text-align: center;
+  font-size: 0.8125rem;
+  color: var(--ink-faint);
+}
+
 /* ---------- Modules ---------- */
 
 .modules {
