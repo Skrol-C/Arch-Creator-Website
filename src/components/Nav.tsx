@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { LuChevronDown, LuMenu, LuX } from 'react-icons/lu'
 import { navLeft, navRightLinks, resources, resourcesLabel, site } from '../data/content'
@@ -112,24 +113,27 @@ export function Nav() {
         </div>
       </div>
 
-      <div id="mobile-menu" className={`${styles.overlay} ${open ? styles.overlayOpen : ''}`}>
-        <nav className={styles.overlayNav} aria-label="Mobile">
-          {[...navLeft, ...navRightLinks].map((l) => (
-            <NavLink key={l.to} to={l.to} className={styles.overlayLink} onClick={close}>
-              {l.label}
-            </NavLink>
-          ))}
-          <p className={styles.overlayGroupLabel}>{resourcesLabel}</p>
-          {resources.map((r) => (
-            <NavLink key={r.to} to={r.to} className={styles.overlayResLink} onClick={close}>
-              {r.label}
-            </NavLink>
-          ))}
-          <Link to="/pricing" className={`btn btn-primary ${styles.overlayCta}`} onClick={close}>
-            Download
-          </Link>
-        </nav>
-      </div>
+      {createPortal(
+        <div id="mobile-menu" className={`${styles.overlay} ${open ? styles.overlayOpen : ''}`}>
+          <nav className={styles.overlayNav} aria-label="Mobile">
+            {[...navLeft, ...navRightLinks].map((l) => (
+              <NavLink key={l.to} to={l.to} className={styles.overlayLink} onClick={close}>
+                {l.label}
+              </NavLink>
+            ))}
+            <p className={styles.overlayGroupLabel}>{resourcesLabel}</p>
+            {resources.map((r) => (
+              <NavLink key={r.to} to={r.to} className={styles.overlayResLink} onClick={close}>
+                {r.label}
+              </NavLink>
+            ))}
+            <Link to="/pricing" className={`btn btn-primary ${styles.overlayCta}`} onClick={close}>
+              Download
+            </Link>
+          </nav>
+        </div>,
+        document.body,
+      )}
     </header>
   )
 }
