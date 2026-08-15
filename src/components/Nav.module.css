@@ -36,7 +36,7 @@
 .navRight {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  gap: 2rem;
   justify-self: end;
 }
 
@@ -88,6 +88,82 @@
 
 .downloadBtn {
   padding: 0.72rem 1.4rem;
+  margin-left: 0.25rem;
+}
+
+/* ---------- Resources dropdown ---------- */
+
+.resources {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.resBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding-block: 0.35rem;
+  transition: color 0.2s ease;
+}
+
+.resBtn:hover,
+.resBtnOpen {
+  color: var(--ink);
+}
+
+.resChev {
+  transition: transform 0.25s var(--ease-out);
+}
+
+.resBtnOpen .resChev {
+  transform: rotate(180deg);
+}
+
+.resMenu {
+  position: absolute;
+  top: calc(100% + 0.9rem);
+  right: 0;
+  min-width: 12rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition:
+    opacity 0.22s var(--ease-out),
+    transform 0.22s var(--ease-out),
+    visibility 0.22s;
+}
+
+.resMenuOpen {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.resLink {
+  font-size: 0.9375rem;
+  color: var(--ink-soft);
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 0.9rem;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.resLink:hover {
+  color: var(--brass-strong);
+  background: var(--brass-faint);
 }
 
 .menuBtn {
@@ -105,6 +181,8 @@
 .menuBtn:hover {
   border-color: var(--brass);
 }
+
+/* ---------- Mobile overlay ---------- */
 
 .overlay {
   position: fixed;
@@ -136,21 +214,36 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.25rem;
   width: 100%;
   max-width: 22rem;
 }
 
 .overlayLink {
   font-family: var(--font-serif);
-  font-size: 1.75rem;
+  font-size: 1.6rem;
   font-weight: 600;
   color: var(--ink);
-  padding: 0.5rem 0;
+  padding: 0.35rem 0;
+}
+
+.overlayGroupLabel {
+  margin-top: 1rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.overlayResLink {
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+  padding: 0.2rem 0;
 }
 
 .overlayCta {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   width: 100%;
 }
 
@@ -168,12 +261,13 @@
     justify-self: start;
   }
 
-  .menuBtn {
-    display: inline-flex;
-  }
-
   .navRight {
     justify-self: end;
+    gap: 1.25rem;
+  }
+
+  .menuBtn {
+    display: inline-flex;
   }
 }
 

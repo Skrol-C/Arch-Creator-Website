@@ -118,30 +118,30 @@
   color: rgba(253, 251, 247, 0.75);
 }
 
-.features {
+.highlights {
   list-style: none;
-  margin-top: 1.75rem;
+  margin-top: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 0.7rem;
   flex: 1;
 }
 
-.feature {
+.highlight {
   display: flex;
   align-items: flex-start;
-  gap: 0.65rem;
+  gap: 0.6rem;
   font-size: 0.9375rem;
   line-height: 1.55;
 }
 
-.check {
+.hlCheck {
   flex: none;
   margin-top: 0.2rem;
   color: var(--brass);
 }
 
-.tierHot .check {
+.tierHot .hlCheck {
   color: var(--brass-bright);
 }
 
@@ -154,48 +154,654 @@
   border: 1px solid var(--brass-bright);
 }
 
-/* ---------- Requirements ---------- */
+/* ---------- Section bands ---------- */
 
-.requirements {
-  margin-top: 3.5rem;
-  max-width: 46rem;
-  margin-inline: auto;
-  text-align: center;
+.sectionAlt {
+  background: var(--paper-deep);
+  border-block: 1px solid var(--line-soft);
 }
 
-.reqHead {
+/* ---------- Comparison table ---------- */
+
+.tableWrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--white);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 40rem;
+}
+
+.table th,
+.table td {
+  padding: 0.85rem 1.25rem;
+  text-align: left;
+  font-size: 0.9375rem;
+  vertical-align: top;
+}
+
+.table thead th {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  background: var(--paper-deep);
+  border-bottom: 1px solid var(--line);
+}
+
+.thLabel {
+  width: 46%;
+}
+
+.thFree {
+  width: 27%;
+}
+
+.thPro {
+  width: 27%;
+  color: var(--brass-strong) !important;
+}
+
+.tdLabel {
+  color: var(--ink);
+  font-weight: 400;
+}
+
+.groupRow td {
   font-size: 0.6875rem;
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--ink-faint);
-  margin-bottom: 1.25rem;
+  color: var(--brass);
+  background: var(--brass-faint);
+  padding-block: 0.6rem 0.6rem;
 }
 
-.reqList {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.7rem 1.6rem;
+.table tbody tr:not(.groupRow) {
+  border-bottom: 1px solid var(--line-soft);
 }
 
-.req {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.875rem;
+.table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.tdFree {
   color: var(--ink-soft);
 }
 
-.reqDot {
-  width: 0.4rem;
-  height: 0.4rem;
-  border-radius: 50%;
-  background: var(--brass);
+.tdPro {
+  color: var(--brass-strong);
+  font-weight: 700;
+  background: var(--brass-faint);
 }
 
-/* ---------- Notes ---------- */
+/* ---------- Free & Pro panels ---------- */
+
+.planGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  align-items: stretch;
+}
+
+.planFree {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.75rem, 4vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+}
+
+.planPro {
+  background: var(--ink);
+  color: var(--paper);
+  border: 1px solid var(--ink);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lift);
+  padding: clamp(1.75rem, 4vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+}
+
+.planKicker {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+
+.planKickerHot {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--brass-bright);
+}
+
+.planTitle {
+  margin-top: 0.9rem;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.planTitleHot {
+  margin-top: 0.9rem;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.planLede {
+  margin-top: 0.8rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+
+.planLedeHot {
+  margin-top: 0.8rem;
+  color: rgba(253, 251, 247, 0.75);
+  line-height: 1.7;
+}
+
+.planPrice {
+  margin-top: 1.1rem;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 2.6rem;
+  line-height: 1;
+}
+
+.planPer {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: rgba(253, 251, 247, 0.55);
+  margin-left: 0.35rem;
+}
+
+.planList {
+  list-style: none;
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  flex: 1;
+}
+
+.planListHot {
+  list-style: none;
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  flex: 1;
+}
+
+.planItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.planItemHot {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: rgba(253, 251, 247, 0.85);
+}
+
+.hlCheckHot {
+  flex: none;
+  margin-top: 0.25rem;
+  color: var(--brass-bright);
+}
+
+.planCta {
+  margin-top: 2rem;
+}
+
+.planPro .planCta {
+  border: 1px solid var(--brass-bright);
+}
+
+/* ---------- Quill dark section ---------- */
+
+.quill {
+  background:
+    radial-gradient(50rem 26rem at 50% -10%, rgba(184, 134, 11, 0.14), transparent 60%),
+    var(--ink);
+  color: var(--paper);
+  padding-block: clamp(4.5rem, 10vw, 7rem);
+  scroll-margin-top: calc(var(--nav-h) + 1rem);
+}
+
+.quillHead {
+  max-width: 46rem;
+}
+
+.quillKicker {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--brass-bright);
+}
+
+.quillKicker::before {
+  content: '';
+  display: inline-block;
+  width: 1.75rem;
+  height: 1px;
+  background: var(--brass-bright);
+  margin-right: 0.75rem;
+  vertical-align: middle;
+}
+
+.quillTitle {
+  margin-top: 0.9rem;
+  font-size: clamp(2rem, 4.6vw, 3.25rem);
+}
+
+.quillLede {
+  margin-top: 1.1rem;
+  color: rgba(253, 251, 247, 0.78);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  max-width: 40rem;
+}
+
+.quillQuote {
+  margin-top: 2.5rem;
+  max-width: 42rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.15rem, 2.4vw, 1.45rem);
+  line-height: 1.7;
+  color: var(--brass-bright);
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
+}
+
+.quillStar {
+  flex: none;
+  margin-top: 0.35rem;
+}
+
+.hats {
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+
+.hat {
+  background: rgba(253, 251, 247, 0.05);
+  border: 1px solid rgba(253, 251, 247, 0.12);
+  border-radius: var(--radius-md);
+  padding: 1.4rem;
+  transition: border-color 0.3s ease, transform 0.3s var(--ease-out);
+}
+
+.hat:hover {
+  border-color: rgba(184, 134, 11, 0.55);
+  transform: translateY(-3px);
+}
+
+.hatIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius-sm);
+  background: rgba(184, 134, 11, 0.18);
+  color: var(--brass-bright);
+}
+
+.hatName {
+  margin-top: 0.9rem;
+  font-size: 1.1rem;
+  color: var(--paper);
+}
+
+.hatBody {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: rgba(253, 251, 247, 0.7);
+}
+
+.quillSplit {
+  margin-top: 2.75rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 6vw, 4rem);
+  align-items: center;
+}
+
+.quillCol {
+  min-width: 0;
+}
+
+.quillSub {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--brass-bright);
+  margin-bottom: 1.1rem;
+}
+
+.quillList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.quillListItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: rgba(253, 251, 247, 0.82);
+}
+
+.quillCheck {
+  flex: none;
+  margin-top: 0.25rem;
+  color: var(--brass-bright);
+}
+
+.quillDot {
+  flex: none;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  margin-top: 0.5rem;
+  background: var(--brass-bright);
+}
+
+.quillShot {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(253, 251, 247, 0.16);
+  box-shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.6);
+}
+
+.quillCta {
+  margin-top: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem;
+  justify-content: space-between;
+  background: rgba(253, 251, 247, 0.05);
+  border: 1px solid rgba(253, 251, 247, 0.12);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+}
+
+.quillNote {
+  max-width: 34rem;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: rgba(253, 251, 247, 0.8);
+}
+
+.quillBtn {
+  border: 1px solid var(--brass-bright);
+}
+
+.quillPrice {
+  font-size: 0.8125rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: none;
+  opacity: 0.9;
+}
+
+/* ---------- Compare ---------- */
+
+.compare {
+  scroll-margin-top: calc(var(--nav-h) + 1rem);
+}
+
+.tools {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.tool {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 1.4rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+}
+
+.tool:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card);
+}
+
+.toolHot {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+  box-shadow: var(--shadow-lift);
+}
+
+.toolName {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.toolModel {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+
+.toolHot .toolModel {
+  color: var(--brass-bright);
+}
+
+.toolPrice {
+  margin-top: 0.25rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.toolNote {
+  font-size: 0.8125rem;
+  color: var(--ink-faint);
+}
+
+.toolHot .toolNote {
+  color: rgba(253, 251, 247, 0.6);
+}
+
+/* Cost over time */
+
+.costs {
+  margin-top: 3.5rem;
+  max-width: 46rem;
+  margin-inline: auto;
+}
+
+.costsTitle {
+  text-align: center;
+  font-size: clamp(1.5rem, 3.4vw, 2.1rem);
+}
+
+.costsLede {
+  text-align: center;
+  margin-top: 0.6rem;
+  color: var(--ink-soft);
+}
+
+.costsHead {
+  margin-top: 1.75rem;
+  display: grid;
+  grid-template-columns: 1.6fr repeat(3, 1fr) 1.6fr;
+  gap: 0.75rem;
+  padding: 0 0.75rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.costsYearHead {
+  text-align: right;
+}
+
+.costRow {
+  margin-top: 0.5rem;
+  display: grid;
+  grid-template-columns: 1.6fr repeat(3, 1fr) 1.6fr;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.9rem 0.75rem;
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  border: 1px solid var(--line-soft);
+}
+
+.costRowHot {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+.costName {
+  font-weight: 700;
+  font-size: 0.9375rem;
+}
+
+.costVal {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-soft);
+}
+
+.costRowHot .costVal {
+  color: var(--brass-bright);
+}
+
+.costBar {
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--line-soft);
+  overflow: hidden;
+}
+
+.costRowHot .costBar {
+  background: rgba(253, 251, 247, 0.14);
+}
+
+.costBarFill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: rgba(154, 107, 33, 0.45);
+}
+
+.costBarFillHot {
+  background: var(--brass-bright);
+}
+
+/* Matrix */
+
+.matrix {
+  margin-top: 4rem;
+}
+
+.matrixTitle {
+  text-align: center;
+  font-size: clamp(1.5rem, 3.4vw, 2.1rem);
+}
+
+.matrixLede {
+  text-align: center;
+  margin-top: 0.6rem;
+  color: var(--ink-soft);
+  margin-bottom: 1.75rem;
+}
+
+.thM {
+  text-align: center;
+}
+
+.thMHot {
+  color: var(--brass-strong);
+}
+
+.tdM {
+  text-align: center;
+}
+
+.tdMHot {
+  background: var(--brass-faint);
+}
+
+.mYes {
+  color: var(--brass);
+}
+
+.mNo {
+  color: var(--line);
+}
+
+.mSome {
+  display: inline-block;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--brass);
+  opacity: 0.45;
+}
+
+.compareWhy {
+  margin: 4rem auto 0;
+  max-width: 36rem;
+  text-align: center;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.25rem, 2.6vw, 1.6rem);
+  line-height: 1.7;
+  color: var(--brass-strong);
+}
+
+.compareFootnote {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.8125rem;
+  color: var(--ink-faint);
+}
+
+/* ---------- Notes & requirements ---------- */
 
 .notes {
   background: var(--paper-deep);
@@ -250,7 +856,52 @@
   color: var(--brass);
 }
 
+.requirements {
+  margin-top: 3.5rem;
+  max-width: 46rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.reqHead {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 1.25rem;
+}
+
+.reqList {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.7rem 1.6rem;
+}
+
+.req {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--ink-soft);
+}
+
+.reqDot {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: var(--brass);
+}
+
 /* ---------- Responsive ---------- */
+
+@media (max-width: 72rem) {
+  .tools {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
 
 @media (max-width: 64rem) {
   .tierGrid {
@@ -268,5 +919,47 @@
     transform: none;
     display: inline-block;
     margin-bottom: 1rem;
+  }
+
+  .hats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .quillSplit {
+    grid-template-columns: 1fr;
+  }
+
+  .planGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .tools {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 40rem) {
+  .hats {
+    grid-template-columns: 1fr;
+  }
+
+  .tools {
+    grid-template-columns: 1fr;
+  }
+
+  .costsHead {
+    grid-template-columns: 1fr 1.4fr 1.4fr 1.4fr;
+  }
+
+  .costRow {
+    grid-template-columns: 1fr 1.4fr 1.4fr 1.4fr;
+  }
+
+  .costName {
+    font-size: 0.8125rem;
+  }
+
+  .costBar {
+    display: none;
   }
 }

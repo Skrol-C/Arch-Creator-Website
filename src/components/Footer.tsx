@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { LuMail, LuGithub, LuArrowUpRight } from 'react-icons/lu'
-import { footer, navLinks, site, urls } from '../data/content'
+import { footer, navLinks, resources, resourcesLabel, site, urls } from '../data/content'
 import styles from './Footer.module.css'
 
 export function Footer() {
@@ -18,7 +18,7 @@ export function Footer() {
             <p className={styles.tagline}>{footer.tagline}</p>
           </div>
 
-          <nav aria-label="Footer">
+          <nav aria-label="Site">
             <p className={styles.colHead}>Site</p>
             <ul className={styles.colList}>
               {navLinks.map((l) => (
@@ -28,11 +28,19 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link className={styles.colLink} to="/pricing">
-                  Download
-                </Link>
-              </li>
+            </ul>
+          </nav>
+
+          <nav aria-label="Resources">
+            <p className={styles.colHead}>{resourcesLabel}</p>
+            <ul className={styles.colList}>
+              {resources.map((r) => (
+                <li key={r.to}>
+                  <Link className={styles.colLink} to={r.to}>
+                    {r.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </nav>
 

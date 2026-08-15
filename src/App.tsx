@@ -4,6 +4,9 @@ import { Home } from './pages/Home'
 import { Features } from './pages/Features'
 import { Pricing } from './pages/Pricing'
 import { About } from './pages/About'
+import { Changelog } from './pages/Changelog'
+import { Roadmap } from './pages/Roadmap'
+import { Legal } from './pages/Legal'
 
 export default function App() {
   return (
@@ -13,6 +16,9 @@ export default function App() {
         <Route path="/features" element={<Features />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/about" element={<About />} />
+        <Route path="/changelog" element={<Changelog />} />
+        <Route path="/roadmap" element={<Roadmap />} />
+        <Route path="/legal" element={<Legal />} />
         <Route path="*" element={<Home />} />
       </Route>
     </Routes>

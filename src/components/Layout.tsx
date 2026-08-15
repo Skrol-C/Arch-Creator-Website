@@ -5,12 +5,24 @@ import { Nav } from './Nav'
 import { Footer } from './Footer'
 import { prefersReducedMotion } from '../hooks/useInView'
 
+const NAV_H = 88
+
 export function Layout() {
-  const { pathname } = useLocation()
+  const { pathname, hash } = useLocation()
 
   useEffect(() => {
+    if (hash) {
+      const id = hash.slice(1)
+      requestAnimationFrame(() => {
+        const el = document.getElementById(id)
+        if (!el) return
+        const top = el.getBoundingClientRect().top + window.scrollY - NAV_H
+        window.scrollTo({ top, left: 0, behavior: 'auto' })
+      })
+      return
+    }
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
-  }, [pathname])
+  }, [pathname, hash])
 
   useEffect(() => {
     if (prefersReducedMotion()) return
