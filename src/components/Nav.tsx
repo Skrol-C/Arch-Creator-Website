@@ -57,7 +57,7 @@ export function Nav() {
         </nav>
 
         <Link to="/" className={styles.brand} onClick={close} aria-label={`${site.name} home`}>
-          <img src="/logo.png" alt="" className={styles.logo} width={30} height={30} />
+          <img src="/logo.png" alt="" className={styles.logo} width={34} height={34} />
           <span className={styles.wordmark}>{site.name}</span>
         </Link>
 
