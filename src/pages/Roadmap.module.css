@@ -16,7 +16,7 @@
 .lede {
   margin-top: 1.2rem;
   font-size: clamp(1.05rem, 1.6vw, 1.2rem);
-  color: var(--ink-soft);
+  color: var(--text-soft);
   max-width: 40rem;
   line-height: 1.75;
 }
@@ -31,7 +31,7 @@
 }
 
 .track {
-  background: var(--white);
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
   padding: 1.4rem 1.5rem;
@@ -49,7 +49,7 @@
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--ink);
+  color: var(--text);
 }
 
 .trackPct {
@@ -108,14 +108,14 @@
   height: 2.65rem;
   border-radius: 50%;
   background: var(--brass);
-  color: var(--paper);
+  color: var(--on-brass);
   font-family: var(--font-serif);
   font-weight: 700;
   font-size: 1.05rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 0 6px var(--paper);
+  box-shadow: 0 0 0 6px var(--bg);
   z-index: 1;
 }
 
@@ -140,12 +140,12 @@
 }
 
 .toneShipped {
-  color: var(--ink-soft);
+  color: var(--text-soft);
   border: 1px solid var(--line);
 }
 
 .toneNext {
-  color: var(--paper);
+  color: var(--on-brass);
   background: var(--brass);
 }
 
@@ -156,7 +156,7 @@
 
 .phaseLine {
   margin-top: 0.5rem;
-  color: var(--ink-soft);
+  color: var(--text-soft);
   font-size: 0.9375rem;
 }
 
@@ -169,7 +169,7 @@
 
 .item {
   position: relative;
-  background: var(--white);
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
   padding: 1.5rem;
@@ -203,7 +203,7 @@
   margin-top: 0.5rem;
   font-size: 0.9375rem;
   line-height: 1.7;
-  color: var(--ink-soft);
+  color: var(--text-soft);
 }
 
 .tags {

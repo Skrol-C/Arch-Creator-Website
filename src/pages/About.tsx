@@ -1,18 +1,9 @@
-import { useState } from 'react'
-import type { FormEvent } from 'react'
-import { LuArrowRight, LuMail } from 'react-icons/lu'
-import { about, contact, site, urls } from '../data/content'
+import { LuArrowUpRight, LuMail } from 'react-icons/lu'
+import { about, contact, site } from '../data/content'
 import { Reveal } from '../components/ui/Reveal'
 import styles from './About.module.css'
 
 export function About() {
-  const [submitted, setSubmitted] = useState(false)
-
-  const onSubmit = (e: FormEvent) => {
-    e.preventDefault()
-    setSubmitted(true)
-  }
-
   return (
     <>
       <section className={styles.header}>
@@ -67,49 +58,20 @@ export function About() {
               </a>
             </div>
             <div className={styles.contactCol}>
-              <p className={styles.newsHead}>{contact.newsletterTitle}</p>
-              <p className={styles.newsLed}>{contact.newsletterLed}</p>
-              {submitted ? (
-                <p className={styles.newsDone}>
-                  You are on the list. The next letter will find its way to you.
-                </p>
-              ) : (
-                <form className={styles.newsForm} onSubmit={onSubmit}>
-                  <label htmlFor="newsletter-email" className="sr-only">
-                    Email address
-                  </label>
-                  <input
-                    id="newsletter-email"
-                    type="email"
-                    required
-                    placeholder="you@example.com"
-                    className={styles.newsInput}
-                  />
-                  <button type="submit" className="btn btn-primary" aria-label="Subscribe to the Survey">
-                    Subscribe
-                    <LuArrowRight className="chev" size={14} />
-                  </button>
-                </form>
-              )}
-              <p className={styles.newsNote}>
-                A few letters a year. No spam, unsubscribe any time.
-              </p>
-            </div>
-          </div>
-
-          <Reveal>
-            <div className={styles.socialRow}>
-              <span className={styles.socialHead}>Find the studio elsewhere</span>
+              <p className={styles.newsHead}>{contact.discordTitle}</p>
+              <p className={styles.newsLed}>{contact.discordLed}</p>
               <a
-                href={urls.releases}
+                href={site.discord}
                 target="_blank"
                 rel="noreferrer"
-                className={styles.socialLink}
+                className={`btn btn-primary ${styles.discordBtn}`}
               >
-                GitHub
+                Join the Discord
+                <LuArrowUpRight size={14} />
               </a>
+              <p className={styles.newsNote}>Free to join. A few hundred like-minded worldbuilders.</p>
             </div>
-          </Reveal>
+          </div>
         </div>
       </section>
     </>

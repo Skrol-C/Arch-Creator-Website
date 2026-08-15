@@ -1,5 +1,5 @@
 import { chromium } from 'playwright'
-import { mkdirSync, readdirSync, renameSync } from 'node:fs'
+import { mkdirSync, readdirSync, renameSync, rmSync, statSync } from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -51,58 +51,77 @@ const step = async (label, fn) => {
   }
 }
 
-/* 1. Boot: loading-screen intro, then the landing hero */
+/* 1. Boot: loading intro, then the landing hero (brief) */
 await page.goto(`${APP}/`, { waitUntil: 'domcontentloaded' }).catch(() => {})
 await page.waitForSelector('.app-container', { timeout: 30000 }).catch(() => {})
-await wait(4200)
-await wait(2000)
+await wait(3800)
+await wait(1400)
 await step('poster', () => page.screenshot({ path: path.join(OUT, 'app-poster.jpg'), type: 'jpeg', quality: 82 }))
-await wait(1500)
+await wait(800)
 
-/* 2. Start with a world -> Worlds view */
+/* 2. Start with a world -> create it */
 await step('worlds view', async () => {
   await page.getByRole('button', { name: 'Start with a world' }).click()
-  await wait(1600)
+  await wait(1200)
 })
-
-/* 3. Create a world -> animated cover */
 await step('create world', async () => {
   await page.getByRole('button', { name: 'New world' }).click()
   await page.fill('[aria-label="New world name"]', 'The Ember Coast')
   await page.keyboard.press('Enter')
-  await wait(2000)
+  await wait(1600)
 })
 
-/* 4. Open the world -> WorldOpenIntro */
-await step('open world', async () => {
-  await page.locator('.wv-card:not(.wv-add)').first().click()
-  await wait(3400)
+/* 3. Open Worldbuilding directly -> WorldbuildingIntro */
+await step('open worldbuilding', async () => {
+  await page.locator('.wv-open--ghost').click().catch(async () => {
+    await page.getByRole('button', { name: 'Worldbuilding', exact: true }).click().catch(() => {})
+  })
+  await wait(2600)
 })
-await step('dismiss world intro', async () => {
-  await page.locator('[aria-label*="Entering"]').click({ force: true }).catch(() => {})
+
+/* 4. Power builder: tab -> add -> intro + wizard */
+await step('power tab', async () => {
+  await page.locator('.tab').filter({ hasText: 'Power' }).first().click()
   await wait(1200)
 })
-
-/* 5. Worldbuilding -> WorldbuildingIntro */
-await step('open worldbuilding', async () => {
+await step('power add', async () => {
   await page
-    .locator('.wo-link:has-text("Worldbuilding")')
+    .getByRole('button', { name: /ignite|add.*power/i })
+    .first()
     .click()
     .catch(async () => {
-      await page.getByRole('button', { name: 'Worldbuilding', exact: true }).click().catch(() => {})
+      await page.getByRole('button', { name: /add/i }).first().click().catch(() => {})
     })
-  await wait(3400)
+  await wait(5200)
 })
 
-await wait(1200)
+/* 5. Currency builder: escape wizard, switch tab, add -> intro */
+await step('to currency', async () => {
+  await page.keyboard.press('Escape').catch(() => {})
+  await wait(600)
+  await page.locator('.tab').filter({ hasText: 'Currency' }).first().click()
+  await wait(1200)
+  await page
+    .getByRole('button', { name: /add.*currency|coin|mint/i })
+    .first()
+    .click()
+    .catch(async () => {
+      await page.getByRole('button', { name: /add/i }).first().click().catch(() => {})
+    })
+  await wait(5200)
+})
+
+await wait(800)
 await browser.close()
 
 const files = readdirSync(OUT).filter((f) => f.endsWith('.webm'))
 log(`recorded: ${files.join(', ')}`)
-if (files.length) {
-  const src = path.join(OUT, files[0])
-  const dst = path.join(OUT, 'app-montage.webm')
-  if (src !== dst) renameSync(src, dst)
-  log('saved -> public/video/app-montage.webm')
+const newest = files
+  .map((f) => ({ f, t: statSync(path.join(OUT, f)).mtimeMs }))
+  .sort((a, b) => b.t - a.t)[0]
+if (newest && newest.f !== 'app-montage.webm') {
+  rmSync(path.join(OUT, 'app-montage.webm'), { force: true })
+  renameSync(path.join(OUT, newest.f), path.join(OUT, 'app-montage.webm'))
 }
+log('saved -> public/video/app-montage.webm')
 log('finished')

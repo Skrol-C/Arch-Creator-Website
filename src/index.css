@@ -1,20 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap');
 
 :root {
-  /* Palette — paper & ink with brass accent */
-  --paper: #fdfbf7;
-  --paper-deep: #f6f1e6;
-  --ink: #2c2926;
-  --ink-soft: #5a554e;
-  --ink-faint: #8d877c;
+  color-scheme: light;
+
+  /* Page chrome */
+  --bg: #fdfbf7;
+  --bg-soft: #f6f1e6;
+  --surface: #ffffff;
+
+  /* Text */
+  --text: #2c2926;
+  --text-soft: #5a554e;
+  --text-faint: #8d877c;
+
+  /* Accent */
   --brass: #9a6b21;
   --brass-strong: #7a5215;
   --brass-bright: #b8860b;
   --brass-soft: #f4ead4;
   --brass-faint: #f8f1e1;
+  --on-brass: #fdfbf7;
+
+  /* Lines */
   --line: rgba(44, 41, 38, 0.12);
   --line-soft: rgba(44, 41, 38, 0.08);
-  --white: #ffffff;
+
+  /* Premium panels (dark-on-light feature cards) */
+  --panel: #2c2926;
+  --panel-text: #fdfbf7;
 
   /* Type */
   --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
@@ -36,6 +49,34 @@
   --radius-lg: 1.25rem;
   --shadow-card: 0 1px 2px rgba(44, 41, 38, 0.05), 0 12px 40px -16px rgba(44, 41, 38, 0.18);
   --shadow-lift: 0 2px 4px rgba(44, 41, 38, 0.06), 0 24px 60px -20px rgba(44, 41, 38, 0.28);
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bg: #0f1015;
+  --bg-soft: #16171d;
+  --surface: #1a1c23;
+
+  --text: #ece7db;
+  --text-soft: #b6afa1;
+  --text-faint: #7d776b;
+
+  --brass: #c9962e;
+  --brass-strong: #d9a83f;
+  --brass-bright: #e6b84e;
+  --brass-soft: rgba(184, 134, 11, 0.16);
+  --brass-faint: rgba(184, 134, 11, 0.12);
+  --on-brass: #221704;
+
+  --line: rgba(236, 231, 219, 0.14);
+  --line-soft: rgba(236, 231, 219, 0.09);
+
+  --panel: #22252e;
+  --panel-text: #ece7db;
+
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.5), 0 14px 40px -18px rgba(0, 0, 0, 0.7);
+  --shadow-lift: 0 2px 4px rgba(0, 0, 0, 0.5), 0 28px 64px -22px rgba(0, 0, 0, 0.75);
 }
 
 *,
@@ -61,14 +102,15 @@ html.lenis body {
 
 body {
   font-family: var(--font-sans);
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--bg);
+  color: var(--text);
   font-size: 1rem;
   line-height: 1.65;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+  transition: background-color 0.35s ease, color 0.35s ease;
 }
 
 img,
@@ -102,7 +144,7 @@ h4 {
 
 ::selection {
   background: var(--brass);
-  color: var(--paper);
+  color: var(--on-brass);
 }
 
 :focus-visible {
@@ -175,7 +217,7 @@ h4 {
 .section-lede {
   margin-top: 1.1rem;
   font-size: clamp(1rem, 1.4vw, 1.125rem);
-  color: var(--ink-soft);
+  color: var(--text-soft);
   line-height: 1.7;
 }
 
@@ -208,7 +250,7 @@ h4 {
 
 .btn-primary {
   background: var(--brass);
-  color: var(--paper);
+  color: var(--on-brass);
   box-shadow: 0 1px 2px rgba(122, 82, 21, 0.3), 0 10px 24px -10px rgba(154, 107, 33, 0.55);
 }
 
@@ -220,7 +262,7 @@ h4 {
 
 .btn-ghost {
   border: 1px solid var(--line);
-  color: var(--ink);
+  color: var(--text);
   background: transparent;
 }
 

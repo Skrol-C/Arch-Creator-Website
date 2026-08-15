@@ -1,6 +1,6 @@
 .footer {
   border-top: 1px solid var(--line-soft);
-  background: var(--paper-deep);
+  background: var(--bg-soft);
   padding-block: clamp(3rem, 7vw, 4.5rem) 2.5rem;
 }
 
@@ -33,7 +33,7 @@
   margin-top: 1rem;
   max-width: 24rem;
   font-size: 0.9375rem;
-  color: var(--ink-soft);
+  color: var(--text-soft);
   line-height: 1.7;
 }
 
@@ -51,7 +51,7 @@
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--ink-faint);
+  color: var(--text-faint);
   margin-bottom: 1rem;
 }
 
@@ -64,7 +64,7 @@
 
 .colLink {
   font-size: 0.9375rem;
-  color: var(--ink-soft);
+  color: var(--text-soft);
   transition: color 0.2s ease;
 }
 
@@ -88,11 +88,11 @@
   justify-content: space-between;
   gap: 1rem;
   font-size: 0.8125rem;
-  color: var(--ink-faint);
+  color: var(--text-faint);
 }
 
 .bottom a {
-  color: var(--ink-soft);
+  color: var(--text-soft);
 }
 
 .bottom a:hover {

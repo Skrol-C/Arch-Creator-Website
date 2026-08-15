@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { LuChevronDown, LuMenu, LuX } from 'react-icons/lu'
+import { LuChevronDown, LuMenu, LuMoon, LuSun, LuX } from 'react-icons/lu'
 import { navLeft, navRightLinks, resources, resourcesLabel, site } from '../data/content'
+import { useTheme } from '../hooks/useTheme'
 import styles from './Nav.module.css'
 
 export function Nav() {
@@ -10,6 +11,7 @@ export function Nav() {
   const [open, setOpen] = useState(false)
   const [resOpen, setResOpen] = useState(false)
   const { pathname } = useLocation()
+  const { theme, toggle } = useTheme()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12)
@@ -71,6 +73,16 @@ export function Nav() {
               {l.label}
             </NavLink>
           ))}
+
+          <button
+            type="button"
+            className={styles.themeBtn}
+            onClick={toggle}
+            aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+            title={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+          >
+            {theme === 'light' ? <LuMoon size={16} /> : <LuSun size={16} />}
+          </button>
 
           <div
             className={styles.resources}

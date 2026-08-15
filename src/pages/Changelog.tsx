@@ -23,7 +23,7 @@ function parseChangelog(raw: string): Release[] {
   for (const line of raw.split(/\r?\n/)) {
     const versionMatch = line.match(/^##\s+\[([^\]]+)\](?:\s*-\s*(.*))?$/)
     if (versionMatch) {
-      current = { version: versionMatch[1], date: versionMatch[2].trim(), categories: [] }
+      current = { version: versionMatch[1], date: (versionMatch[2] ?? '').trim(), categories: [] }
       currentCat = null
       releases.push(current)
       continue

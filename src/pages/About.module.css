@@ -16,7 +16,7 @@
 .lede {
   margin-top: 1.2rem;
   font-size: clamp(1.05rem, 1.6vw, 1.2rem);
-  color: var(--ink-soft);
+  color: var(--text-soft);
   max-width: 40rem;
   line-height: 1.75;
 }
@@ -30,7 +30,7 @@
 .storyPara {
   font-size: clamp(1.05rem, 1.6vw, 1.175rem);
   line-height: 1.85;
-  color: var(--ink-soft);
+  color: var(--text-soft);
   margin-bottom: 1.4rem;
 }
 
@@ -46,7 +46,7 @@
 }
 
 .storyPara:first-child {
-  color: var(--ink);
+  color: var(--text);
   font-size: clamp(1.15rem, 1.9vw, 1.35rem);
 }
 
@@ -62,7 +62,7 @@
 .value {
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
-  background: var(--white);
+  background: var(--surface);
   padding: 1.75rem;
   position: relative;
   transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
@@ -104,13 +104,13 @@
   margin-top: 0.6rem;
   font-size: 0.9375rem;
   line-height: 1.7;
-  color: var(--ink-soft);
+  color: var(--text-soft);
 }
 
 /* ---------- Contact ---------- */
 
 .contact {
-  background: var(--paper-deep);
+  background: var(--bg-soft);
   border-top: 1px solid var(--line-soft);
 }
 
@@ -118,7 +118,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: clamp(2.5rem, 6vw, 4.5rem);
-  background: var(--white);
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
@@ -132,7 +132,7 @@
 
 .contactLede {
   margin-top: 1rem;
-  color: var(--ink-soft);
+  color: var(--text-soft);
   line-height: 1.7;
 }
 
@@ -150,9 +150,13 @@
 
 .newsLed {
   margin-top: 0.9rem;
-  color: var(--ink-soft);
+  color: var(--text-soft);
   line-height: 1.7;
   font-size: 0.9375rem;
+}
+
+.discordBtn {
+  margin-top: 1.5rem;
 }
 
 .newsForm {
@@ -166,8 +170,8 @@
   min-width: 0;
   font: inherit;
   font-size: 0.9375rem;
-  color: var(--ink);
-  background: var(--paper);
+  color: var(--text);
+  background: var(--bg);
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
   padding: 0.8rem 1rem;
@@ -175,7 +179,7 @@
 }
 
 .newsInput::placeholder {
-  color: var(--ink-faint);
+  color: var(--text-faint);
 }
 
 .newsInput:focus {
@@ -195,7 +199,7 @@
 .newsNote {
   margin-top: 0.85rem;
   font-size: 0.8125rem;
-  color: var(--ink-faint);
+  color: var(--text-faint);
 }
 
 .socialRow {
@@ -212,12 +216,12 @@
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--ink-faint);
+  color: var(--text-faint);
 }
 
 .socialLink {
   font-size: 0.9375rem;
-  color: var(--ink-soft);
+  color: var(--text-soft);
   transition: color 0.2s ease;
 }
 

@@ -16,7 +16,7 @@
 .lede {
   margin-top: 1.2rem;
   font-size: clamp(1.05rem, 1.6vw, 1.2rem);
-  color: var(--ink-soft);
+  color: var(--text-soft);
   max-width: 40rem;
   line-height: 1.75;
 }
@@ -48,13 +48,13 @@
 
 .upcomingEmpty {
   margin-top: 1rem;
-  color: var(--ink-soft);
+  color: var(--text-soft);
 }
 
 /* ---------- Featured release ---------- */
 
 .featured {
-  background: var(--white);
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
@@ -66,8 +66,8 @@
   align-items: center;
   gap: 1rem;
   padding: 1.25rem 2rem;
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--panel);
+  color: var(--panel-text);
 }
 
 .versionChip {
@@ -112,7 +112,7 @@
   padding-left: 1.25rem;
   font-size: 0.9375rem;
   line-height: 1.65;
-  color: var(--ink-soft);
+  color: var(--text-soft);
 }
 
 .catItem::before {
@@ -128,7 +128,7 @@
 }
 
 .catItem strong {
-  color: var(--ink);
+  color: var(--text);
   font-weight: 700;
 }
 
@@ -147,7 +147,7 @@
 }
 
 .details {
-  background: var(--white);
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
   overflow: hidden;
@@ -175,17 +175,17 @@
   font-family: var(--font-serif);
   font-weight: 700;
   font-size: 1.05rem;
-  color: var(--ink);
+  color: var(--text);
 }
 
 .summaryDate {
   font-size: 0.8125rem;
-  color: var(--ink-faint);
+  color: var(--text-faint);
 }
 
 .summaryChev {
   margin-left: auto;
-  color: var(--ink-faint);
+  color: var(--text-faint);
   transition: transform 0.25s var(--ease-out);
 }
 

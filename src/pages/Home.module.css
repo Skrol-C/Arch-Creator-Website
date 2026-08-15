@@ -48,7 +48,7 @@
   max-width: 34rem;
   font-size: clamp(1.05rem, 1.6vw, 1.2rem);
   line-height: 1.75;
-  color: var(--ink-soft);
+  color: var(--text-soft);
 }
 
 .ctaRow {
@@ -168,9 +168,9 @@
   gap: 0.45rem;
   font-size: 0.8125rem;
   font-weight: 400;
-  color: var(--ink-soft);
+  color: var(--text-soft);
   border: 1px solid var(--line);
-  background: var(--white);
+  background: var(--surface);
   border-radius: 999px;
   padding: 0.5rem 0.95rem;
   transition:
@@ -194,7 +194,7 @@
 .mock {
   margin-inline: auto;
   max-width: 60rem;
-  background: var(--white);
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
@@ -213,7 +213,7 @@
   gap: 0.5rem;
   padding: 0.8rem 1.1rem;
   border-bottom: 1px solid var(--line-soft);
-  background: var(--paper-deep);
+  background: var(--bg-soft);
 }
 
 .chromeDot {
@@ -241,7 +241,7 @@
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--ink-faint);
+  color: var(--text-faint);
 }
 
 .mockBody {
@@ -263,7 +263,7 @@
   gap: 0.55rem;
   padding: 0.9rem 1.2rem;
   border-top: 1px solid var(--line-soft);
-  background: var(--paper-deep);
+  background: var(--bg-soft);
 }
 
 .chip {
@@ -271,8 +271,8 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--ink-soft);
-  background: var(--white);
+  color: var(--text-soft);
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 999px;
   padding: 0.4rem 0.85rem;
@@ -293,7 +293,7 @@
   justify-content: center;
   gap: 0.9rem;
   font-size: 0.8125rem;
-  color: var(--ink-faint);
+  color: var(--text-faint);
 }
 
 .exportLabel {
@@ -301,17 +301,17 @@
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--ink-faint);
+  color: var(--text-faint);
 }
 
 .exportItems {
-  color: var(--ink-soft);
+  color: var(--text-soft);
 }
 
 /* ---------- In motion (video) ---------- */
 
 .motion {
-  background: var(--paper-deep);
+  background: var(--bg-soft);
   border-block: 1px solid var(--line-soft);
 }
 
@@ -336,13 +336,13 @@
   margin-top: 1.1rem;
   text-align: center;
   font-size: 0.8125rem;
-  color: var(--ink-faint);
+  color: var(--text-faint);
 }
 
 /* ---------- Modules ---------- */
 
 .modules {
-  background: var(--paper-deep);
+  background: var(--bg-soft);
   border-block: 1px solid var(--line-soft);
 }
 
@@ -353,7 +353,7 @@
 }
 
 .moduleCard {
-  background: var(--white);
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
   padding: 1.6rem;
@@ -387,7 +387,7 @@
   margin-top: 0.55rem;
   font-size: 0.9375rem;
   line-height: 1.7;
-  color: var(--ink-soft);
+  color: var(--text-soft);
 }
 
 /* ---------- Ethos ---------- */
@@ -395,7 +395,7 @@
 .ethos {
   background:
     radial-gradient(60rem 30rem at 50% 0%, rgba(154, 107, 33, 0.06), transparent 60%),
-    var(--paper);
+    var(--bg);
 }
 
 .ethosInner {
@@ -420,7 +420,7 @@
 .ethosLede {
   margin: 1.2rem auto 0;
   max-width: 38rem;
-  color: var(--ink-soft);
+  color: var(--text-soft);
   font-size: 1.05rem;
   line-height: 1.75;
 }
@@ -436,7 +436,7 @@
   font-style: italic;
   font-size: clamp(1.15rem, 2.4vw, 1.5rem);
   line-height: 1.7;
-  color: var(--ink);
+  color: var(--text);
   max-width: 40rem;
   margin-inline: auto;
 }
@@ -457,8 +457,8 @@
 .ctaCard {
   position: relative;
   text-align: center;
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--panel);
+  color: var(--panel-text);
   border-radius: var(--radius-lg);
   padding: clamp(2.75rem, 7vw, 5rem) clamp(1.5rem, 5vw, 4rem);
   overflow: hidden;

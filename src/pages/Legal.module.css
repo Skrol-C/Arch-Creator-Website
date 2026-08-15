@@ -16,7 +16,7 @@
 .lede {
   margin-top: 1.2rem;
   font-size: clamp(1.05rem, 1.6vw, 1.2rem);
-  color: var(--ink-soft);
+  color: var(--text-soft);
   max-width: 40rem;
   line-height: 1.75;
 }
@@ -44,14 +44,14 @@
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--ink-soft);
+  color: var(--text-soft);
   border-left: 2px solid transparent;
   padding: 0.65rem 0.9rem;
   transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
 }
 
 .subnavBtn:hover {
-  color: var(--ink);
+  color: var(--text);
 }
 
 .subnavActive {
@@ -63,7 +63,7 @@
 /* ---------- Document ---------- */
 
 .doc {
-  background: var(--white);
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   padding: clamp(1.75rem, 4.5vw, 3rem);
@@ -96,14 +96,14 @@
 
 .docMeta {
   font-size: 0.75rem;
-  color: var(--ink-faint);
+  color: var(--text-faint);
 }
 
 .intro {
   font-family: var(--font-serif);
   font-size: 1.1rem;
   line-height: 1.75;
-  color: var(--ink);
+  color: var(--text);
   margin-bottom: 1.5rem;
 }
 
@@ -124,12 +124,12 @@
   margin-top: 0.75rem;
   font-size: 0.9375rem;
   line-height: 1.75;
-  color: var(--ink-soft);
+  color: var(--text-soft);
 }
 
 .secP strong,
 .secLi strong {
-  color: var(--ink);
+  color: var(--text);
   font-weight: 700;
 }
 
@@ -144,7 +144,7 @@
 .secLi {
   font-size: 0.9375rem;
   line-height: 1.7;
-  color: var(--ink-soft);
+  color: var(--text-soft);
 }
 
 .secNote {
@@ -155,7 +155,7 @@
   padding: 0.9rem 1.15rem;
   font-size: 0.9375rem;
   line-height: 1.7;
-  color: var(--ink);
+  color: var(--text);
 }
 
 .secNote strong {
@@ -189,8 +189,8 @@
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--ink-soft);
-  background: var(--paper-deep);
+  color: var(--text-soft);
+  background: var(--bg-soft);
   border-bottom: 1px solid var(--line);
 }
 
@@ -203,7 +203,7 @@
 }
 
 .table td {
-  color: var(--ink-soft);
+  color: var(--text-soft);
 }
 
 /* ---------- Responsive ---------- */

@@ -16,7 +16,7 @@
 .lede {
   margin-top: 1.2rem;
   font-size: clamp(1.05rem, 1.6vw, 1.2rem);
-  color: var(--ink-soft);
+  color: var(--text-soft);
   max-width: 40rem;
   line-height: 1.75;
 }
@@ -30,7 +30,7 @@
 }
 
 .card {
-  background: var(--white);
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
   padding: 1.75rem;
@@ -64,7 +64,7 @@
   margin-top: 0.6rem;
   font-size: 0.9375rem;
   line-height: 1.7;
-  color: var(--ink-soft);
+  color: var(--text-soft);
 }
 
 /* ---------- Full-width showcase blocks ---------- */
@@ -83,7 +83,7 @@
 }
 
 .blockAlt {
-  background: var(--paper-deep);
+  background: var(--bg-soft);
   border-block: 1px solid var(--line-soft);
 }
 
@@ -118,7 +118,7 @@
 
 .blockBody {
   margin-top: 1rem;
-  color: var(--ink-soft);
+  color: var(--text-soft);
   line-height: 1.75;
 }
 
@@ -133,9 +133,9 @@
 
 .point {
   font-size: 0.875rem;
-  color: var(--ink-soft);
+  color: var(--text-soft);
   border: 1px solid var(--line);
-  background: var(--white);
+  background: var(--surface);
   border-radius: 999px;
   padding: 0.5rem 1rem;
   transition:

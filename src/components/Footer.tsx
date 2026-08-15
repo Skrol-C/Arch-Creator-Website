@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { LuMail, LuGithub, LuArrowUpRight } from 'react-icons/lu'
+import { LuMail, LuMessageSquare, LuArrowUpRight } from 'react-icons/lu'
 import { footer, navLinks, resources, resourcesLabel, site, urls } from '../data/content'
 import styles from './Footer.module.css'
 
@@ -53,13 +53,8 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a
-                  className={`${styles.colLink} ${styles.social}`}
-                  href={site.github}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <LuGithub size={15} /> GitHub
+                <a className={`${styles.colLink} ${styles.social}`} href={site.discord} target="_blank" rel="noreferrer">
+                  <LuMessageSquare size={15} /> Discord
                 </a>
               </li>
               <li>

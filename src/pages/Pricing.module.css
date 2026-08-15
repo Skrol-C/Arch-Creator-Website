@@ -16,7 +16,7 @@
 .lede {
   margin-top: 1.2rem;
   font-size: clamp(1.05rem, 1.6vw, 1.2rem);
-  color: var(--ink-soft);
+  color: var(--text-soft);
   max-width: 40rem;
   line-height: 1.75;
 }
@@ -34,7 +34,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  background: var(--white);
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   padding: 2.25rem 2rem;
@@ -47,9 +47,9 @@
 }
 
 .tierHot {
-  background: var(--ink);
-  color: var(--paper);
-  border-color: var(--ink);
+  background: var(--panel);
+  color: var(--panel-text);
+  border-color: var(--panel);
   box-shadow: var(--shadow-lift);
 }
 
@@ -66,7 +66,7 @@
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--paper);
+  color: var(--on-brass);
   background: var(--brass);
   border-radius: 999px;
   padding: 0.4rem 1rem;
@@ -78,7 +78,7 @@
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--ink-faint);
+  color: var(--text-faint);
 }
 
 .tierNameHot {
@@ -99,7 +99,7 @@
   font-size: 0.8125rem;
   font-weight: 400;
   letter-spacing: 0.06em;
-  color: var(--ink-faint);
+  color: var(--text-faint);
   margin-left: 0.35rem;
 }
 
@@ -111,7 +111,7 @@
   margin-top: 1rem;
   font-size: 0.9375rem;
   line-height: 1.7;
-  color: var(--ink-soft);
+  color: var(--text-soft);
 }
 
 .blurbHot {
@@ -157,7 +157,7 @@
 /* ---------- Section bands ---------- */
 
 .sectionAlt {
-  background: var(--paper-deep);
+  background: var(--bg-soft);
   border-block: 1px solid var(--line-soft);
 }
 
@@ -167,7 +167,7 @@
   overflow-x: auto;
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  background: var(--white);
+  background: var(--surface);
 }
 
 .table {
@@ -189,8 +189,8 @@
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--ink-soft);
-  background: var(--paper-deep);
+  color: var(--text-soft);
+  background: var(--bg-soft);
   border-bottom: 1px solid var(--line);
 }
 
@@ -208,7 +208,7 @@
 }
 
 .tdLabel {
-  color: var(--ink);
+  color: var(--text);
   font-weight: 400;
 }
 
@@ -231,7 +231,7 @@
 }
 
 .tdFree {
-  color: var(--ink-soft);
+  color: var(--text-soft);
 }
 
 .tdPro {
@@ -250,7 +250,7 @@
 }
 
 .planFree {
-  background: var(--white);
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   padding: clamp(1.75rem, 4vw, 2.5rem);
@@ -259,9 +259,9 @@
 }
 
 .planPro {
-  background: var(--ink);
-  color: var(--paper);
-  border: 1px solid var(--ink);
+  background: var(--panel);
+  color: var(--panel-text);
+  border: 1px solid var(--panel);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lift);
   padding: clamp(1.75rem, 4vw, 2.5rem);
@@ -297,7 +297,7 @@
 
 .planLede {
   margin-top: 0.8rem;
-  color: var(--ink-soft);
+  color: var(--text-soft);
   line-height: 1.7;
 }
 
@@ -347,7 +347,7 @@
   gap: 0.6rem;
   font-size: 0.9375rem;
   line-height: 1.6;
-  color: var(--ink-soft);
+  color: var(--text-soft);
 }
 
 .planItemHot {
@@ -378,8 +378,8 @@
 .quill {
   background:
     radial-gradient(50rem 26rem at 50% -10%, rgba(184, 134, 11, 0.14), transparent 60%),
-    var(--ink);
-  color: var(--paper);
+    var(--panel);
+  color: var(--panel-text);
   padding-block: clamp(4.5rem, 10vw, 7rem);
   scroll-margin-top: calc(var(--nav-h) + 1rem);
 }
@@ -471,7 +471,7 @@
 .hatName {
   margin-top: 0.9rem;
   font-size: 1.1rem;
-  color: var(--paper);
+  color: var(--panel-text);
 }
 
 .hatBody {
@@ -586,7 +586,7 @@
 }
 
 .tool {
-  background: var(--white);
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
   padding: 1.4rem 1.5rem;
@@ -602,9 +602,9 @@
 }
 
 .toolHot {
-  background: var(--ink);
-  color: var(--paper);
-  border-color: var(--ink);
+  background: var(--panel);
+  color: var(--panel-text);
+  border-color: var(--panel);
   box-shadow: var(--shadow-lift);
 }
 
@@ -634,7 +634,7 @@
 
 .toolNote {
   font-size: 0.8125rem;
-  color: var(--ink-faint);
+  color: var(--text-faint);
 }
 
 .toolHot .toolNote {
@@ -657,7 +657,7 @@
 .costsLede {
   text-align: center;
   margin-top: 0.6rem;
-  color: var(--ink-soft);
+  color: var(--text-soft);
 }
 
 .costsHead {
@@ -670,7 +670,7 @@
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--ink-faint);
+  color: var(--text-faint);
 }
 
 .costsYearHead {
@@ -685,14 +685,14 @@
   align-items: center;
   padding: 0.9rem 0.75rem;
   border-radius: var(--radius-sm);
-  background: var(--white);
+  background: var(--surface);
   border: 1px solid var(--line-soft);
 }
 
 .costRowHot {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: var(--paper);
+  background: var(--panel);
+  border-color: var(--panel);
+  color: var(--panel-text);
 }
 
 .costName {
@@ -703,7 +703,7 @@
 .costVal {
   text-align: right;
   font-variant-numeric: tabular-nums;
-  color: var(--ink-soft);
+  color: var(--text-soft);
 }
 
 .costRowHot .costVal {
@@ -746,7 +746,7 @@
 .matrixLede {
   text-align: center;
   margin-top: 0.6rem;
-  color: var(--ink-soft);
+  color: var(--text-soft);
   margin-bottom: 1.75rem;
 }
 
@@ -798,13 +798,13 @@
   margin-top: 1.5rem;
   text-align: center;
   font-size: 0.8125rem;
-  color: var(--ink-faint);
+  color: var(--text-faint);
 }
 
 /* ---------- Notes & requirements ---------- */
 
 .notes {
-  background: var(--paper-deep);
+  background: var(--bg-soft);
   border-top: 1px solid var(--line-soft);
 }
 
@@ -828,7 +828,7 @@
 
 .note {
   font-size: 0.9375rem;
-  color: var(--ink-soft);
+  color: var(--text-soft);
   line-height: 1.7;
 }
 
@@ -845,9 +845,9 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 0.8125rem;
-  color: var(--ink-soft);
+  color: var(--text-soft);
   border: 1px solid var(--line);
-  background: var(--white);
+  background: var(--surface);
   border-radius: 999px;
   padding: 0.5rem 1rem;
 }
@@ -868,7 +868,7 @@
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--ink-faint);
+  color: var(--text-faint);
   margin-bottom: 1.25rem;
 }
 
@@ -885,7 +885,7 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 0.875rem;
-  color: var(--ink-soft);
+  color: var(--text-soft);
 }
 
 .reqDot {
