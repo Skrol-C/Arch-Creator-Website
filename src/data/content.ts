@@ -170,7 +170,7 @@ export const features = {
       name: 'Quill — the continuity companion',
       body: 'A separate add-on module that reads your world and your draft together. Quill checks names, dates and facts against your lore and flags the small contradictions that break immersion.',
       points: ['Reads world and draft together', 'Flags contradictions early', 'Standalone add-on for $30'],
-      image: '/screenshots/quill.png',
+      image: '/screenshots/quill-window.png',
       alt: 'The Quill continuity pane in Arch-Creator',
     },
     {

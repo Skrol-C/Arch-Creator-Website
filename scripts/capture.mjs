@@ -103,10 +103,10 @@ await section('studio', async () => {
     'The brass clock in the Atrium tower had run slow for three days, and Kael noticed because no one else would. Ten minutes, then eleven — the city moved to its beat and never felt the drag. He pressed his palm flat against the copper face and felt, beneath the polished plate, something that had never been there before: a second mechanism, ticking in the dark.',
   )
   await wait(800)
+  await shot('studio')
   await page.getByRole('button', { name: 'Open Quill pane', exact: true }).click().catch(() => {})
   await wait(3000)
-  await shot('studio')
-  await page.locator('.as-pane-quill').screenshot({ path: path.join(OUT, 'quill.png') }).catch(() => {})
+  await shot('quill-window')
 })
 
 /* 5. Plot board */

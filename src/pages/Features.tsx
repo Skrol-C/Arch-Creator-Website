@@ -35,42 +35,38 @@ export function Features() {
         </div>
       </section>
 
-      <section className={`section ${styles.blocks}`}>
-        <div className="shell">
-          <div className={styles.blockList}>
-            {features.blocks.map((b, i) => {
-              const flip = i % 2 === 1
-              return (
-                <Reveal key={b.name} as="article" className={`${styles.block} ${flip ? styles.blockFlip : ''}`}>
-                  <div className={styles.blockCopy}>
-                    <span className={styles.blockIcon}>
-                      <b.icon size={22} />
-                    </span>
-                    <h2 className={styles.blockName}>{b.name}</h2>
-                    <p className={styles.blockBody}>{b.body}</p>
-                    <ul className={styles.points}>
-                      {b.points.map((p) => (
-                        <li key={p} className={styles.point}>
-                          <span className={styles.pointMark} aria-hidden="true" />
-                          {p}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className={styles.blockArt}>
-                    <img
-                      src={b.image}
-                      alt={b.alt}
-                      className={styles.shot}
-                      loading="lazy"
-                      width={1280}
-                      height={800}
-                    />
-                  </div>
-                </Reveal>
-              )
-            })}
-          </div>
+      <section className={styles.blocks}>
+        <div className={styles.blockList}>
+          {features.blocks.map((b, i) => (
+            <Reveal key={b.name} as="article" className={`${styles.block} ${i % 2 === 1 ? styles.blockAlt : ''}`}>
+              <div className={`shell ${styles.blockInner}`}>
+                <div className={styles.blockCopy}>
+                  <span className={styles.blockIcon}>
+                    <b.icon size={22} />
+                  </span>
+                  <h2 className={styles.blockName}>{b.name}</h2>
+                  <p className={styles.blockBody}>{b.body}</p>
+                  <ul className={styles.points}>
+                    {b.points.map((p) => (
+                      <li key={p} className={styles.point}>
+                        {p}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className={styles.blockShotWrap}>
+                  <img
+                    src={b.image}
+                    alt={b.alt}
+                    className={styles.shot}
+                    loading="lazy"
+                    width={1440}
+                    height={900}
+                  />
+                </div>
+              </div>
+            </Reveal>
+          ))}
         </div>
       </section>
 

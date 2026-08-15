@@ -67,36 +67,37 @@
   color: var(--ink-soft);
 }
 
-/* ---------- Detail blocks ---------- */
+/* ---------- Full-width showcase blocks ---------- */
 
 .blocks {
-  background: var(--paper-deep);
-  border-block: 1px solid var(--line-soft);
+  border-top: 1px solid var(--line-soft);
 }
 
 .blockList {
   display: flex;
   flex-direction: column;
-  gap: clamp(3.5rem, 8vw, 6rem);
 }
 
 .block {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(2rem, 6vw, 4.5rem);
+  padding-block: clamp(4rem, 9vw, 6.5rem);
+}
+
+.blockAlt {
+  background: var(--paper-deep);
+  border-block: 1px solid var(--line-soft);
+}
+
+.blockInner {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 5vw, 3.25rem);
   align-items: center;
 }
 
-.blockFlip .blockCopy {
-  order: 2;
-}
-
-.blockFlip .blockArt {
-  order: 1;
-}
-
 .blockCopy {
-  max-width: 34rem;
+  max-width: 42rem;
+  margin-inline: auto;
+  text-align: center;
 }
 
 .blockIcon {
@@ -111,8 +112,8 @@
 }
 
 .blockName {
-  margin-top: 1.25rem;
-  font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+  margin-top: 1.1rem;
+  font-size: clamp(1.7rem, 3.6vw, 2.4rem);
 }
 
 .blockBody {
@@ -123,51 +124,50 @@
 
 .points {
   list-style: none;
-  margin-top: 1.5rem;
+  margin-top: 1.6rem;
   display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
 }
 
 .point {
-  display: flex;
-  align-items: baseline;
-  gap: 0.7rem;
-  font-size: 0.9375rem;
-  color: var(--ink);
+  font-size: 0.875rem;
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+  background: var(--white);
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease;
 }
 
-.pointMark {
-  flex: none;
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-  background: var(--brass);
-  transform: translateY(-0.05rem);
+.point:hover {
+  border-color: rgba(154, 107, 33, 0.45);
+  color: var(--brass-strong);
 }
 
-/* Screenshot panel */
-
-.blockArt {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.blockShotWrap {
+  width: 100%;
+  max-width: 56rem;
 }
 
 .shot {
-  width: min(100%, 30rem);
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background: #0c0d11;
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card);
-  background: var(--white);
+  box-shadow: var(--shadow-lift);
   transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
 }
 
 .shot:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-lift);
+  box-shadow: 0 4px 8px rgba(44, 41, 38, 0.08), 0 36px 80px -24px rgba(44, 41, 38, 0.4);
 }
 
 /* ---------- CTA ---------- */
@@ -189,27 +189,6 @@
 @media (max-width: 64rem) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .block {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .blockFlip .blockCopy {
-    order: 0;
-  }
-
-  .blockFlip .blockArt {
-    order: 0;
-  }
-
-  .blockArt {
-    order: -1;
-  }
-
-  .blockFlip .blockArt {
-    order: -1;
   }
 }
 
