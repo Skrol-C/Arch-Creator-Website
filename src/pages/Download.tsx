@@ -40,10 +40,7 @@ const PLATFORMS: {
     icon: 'apple',
     chipClass: styles.chipMac,
     line: 'download.mac.line',
-    variants: [
-      { label: 'download.mac.variant.0', note: 'download.mac.variant.0.note', available: true },
-      { label: 'download.mac.variant.1', note: 'download.mac.variant.1.note', available: false },
-    ],
+    variants: [{ label: 'download.mac.variant.0', note: 'download.mac.variant.0.note', available: true }],
   },
   {
     id: 'windows',
