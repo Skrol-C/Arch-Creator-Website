@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Bundled Arch Creator web demo (rebuilt by `npm run demo:sync` before deploy)
+public/demo-app
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

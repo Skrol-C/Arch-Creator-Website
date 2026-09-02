@@ -1,0 +1,116 @@
+.soundBtn {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 120;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  color: var(--ink-soft);
+  background: var(--paper-raised);
+  border: 1px solid var(--rule-strong);
+  box-shadow: var(--shadow-plate-lift);
+  transition:
+    color 150ms ease,
+    border-color 150ms ease,
+    transform 150ms var(--ease-settle);
+}
+
+.soundBtn:hover {
+  color: var(--rubric);
+  border-color: rgba(168, 22, 42, 0.45);
+  transform: translateY(-2px);
+}
+
+.soundOn {
+  color: var(--rubric);
+  border-color: rgba(168, 22, 42, 0.45);
+}
+
+@media (max-width: 40rem) {
+  .soundBtn {
+    right: 0.9rem;
+    bottom: 0.9rem;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+/* Locale suggestion banner */
+
+.localeBanner {
+  position: fixed;
+  left: 50%;
+  bottom: 1.5rem;
+  transform: translateX(-50%);
+  z-index: 130;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  max-width: min(92vw, 30rem);
+  background: var(--paper-raised);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius-plate);
+  box-shadow: var(--shadow-plate-lift);
+  padding: 0.85rem 1.1rem;
+  animation: localeIn 400ms var(--ease-ink);
+}
+
+@keyframes localeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.localeFlag {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.localeText {
+  font-size: 0.9rem;
+  color: var(--ink);
+  flex: 1;
+}
+
+.localeText strong {
+  font-weight: 700;
+}
+
+.localeAccept {
+  padding: 0.6rem 1rem;
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.localeDecline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 50%;
+  color: var(--ink-faint);
+  transition:
+    color 150ms ease,
+    background-color 150ms ease;
+}
+
+.localeDecline:hover {
+  color: var(--ink);
+  background: var(--paper-deep);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .localeBanner {
+    animation: none;
+  }
+}

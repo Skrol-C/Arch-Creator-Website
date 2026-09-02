@@ -42,12 +42,43 @@
   line-height: 0.8;
   padding-right: 0.55rem;
   padding-top: 0.2rem;
-  color: var(--brass);
+  color: var(--rubric);
 }
 
 .storyPara:first-child {
-  color: var(--text);
+  color: var(--ink);
   font-size: clamp(1.15rem, 1.9vw, 1.35rem);
+}
+
+/* Colophon signature */
+.colophon {
+  margin-top: clamp(3.5rem, 8vw, 5.5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--rule);
+}
+
+.colophonMark {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #0b0b0f;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 8px 20px rgba(0, 0, 0, 0.45);
+}
+
+.colophonLine {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--sepia);
 }
 
 /* ---------- Values ---------- */
@@ -60,17 +91,19 @@
 }
 
 .value {
-  border: 1px solid var(--line);
-  border-radius: var(--radius-md);
-  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-plate);
+  background: var(--paper-raised);
   padding: 1.75rem;
   position: relative;
-  transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+  transition:
+    transform 0.3s var(--ease-settle),
+    box-shadow 0.3s var(--ease-settle);
 }
 
 .value:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--shadow-plate);
 }
 
 .valueIcon {
@@ -79,9 +112,10 @@
   justify-content: center;
   width: 2.75rem;
   height: 2.75rem;
-  border-radius: var(--radius-sm);
-  background: var(--brass-soft);
-  color: var(--brass-strong);
+  border-radius: var(--radius-btn);
+  border: 1px solid rgba(168, 22, 42, 0.3);
+  background: rgba(168, 22, 42, 0.07);
+  color: var(--rubric);
 }
 
 .valueStep {
@@ -91,7 +125,7 @@
   font-family: var(--font-serif);
   font-style: italic;
   font-size: 1.6rem;
-  color: var(--line);
+  color: var(--rule-strong);
 }
 
 .valueName {
@@ -110,18 +144,18 @@
 /* ---------- Contact ---------- */
 
 .contact {
-  background: var(--bg-soft);
-  border-top: 1px solid var(--line-soft);
+  background: var(--paper-deep);
+  border-top: 1px solid var(--rule);
 }
 
 .contactCard {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: clamp(2.5rem, 6vw, 4.5rem);
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card);
+  background: var(--paper-raised);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius-plate);
+  box-shadow: var(--shadow-plate);
   padding: clamp(2rem, 5vw, 3.5rem);
 }
 
@@ -145,12 +179,12 @@
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--brass);
+  color: var(--rubric);
 }
 
 .newsLed {
   margin-top: 0.9rem;
-  color: var(--text-soft);
+  color: var(--ink-soft);
   line-height: 1.7;
   font-size: 0.9375rem;
 }
@@ -199,7 +233,7 @@
 .newsNote {
   margin-top: 0.85rem;
   font-size: 0.8125rem;
-  color: var(--text-faint);
+  color: var(--ink-faint);
 }
 
 .socialRow {

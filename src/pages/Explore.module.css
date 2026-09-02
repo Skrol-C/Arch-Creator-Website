@@ -1,0 +1,302 @@
+.header {
+  padding-top: calc(var(--nav-h) + clamp(4rem, 10vh, 6.5rem));
+  padding-bottom: clamp(3rem, 6vh, 4.5rem);
+}
+
+.headerInner {
+  max-width: 46rem;
+}
+
+.title {
+  margin-top: 1rem;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  letter-spacing: -0.02em;
+}
+
+.title em {
+  font-style: italic;
+  color: var(--rubric);
+}
+
+.lede {
+  margin-top: 1.2rem;
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  color: var(--ink-soft);
+  max-width: 40rem;
+  line-height: 1.75;
+}
+
+/* ---------- Stage ---------- */
+
+.stage {
+  padding-bottom: clamp(4rem, 9vw, 6rem);
+}
+
+/* Center the app window like a monitor on a desk */
+.stageWindow {
+  max-width: 58rem;
+  margin-inline: auto;
+}
+
+.frameBar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.25rem;
+  background: var(--paper-deep);
+  border: 1px solid var(--rule-strong);
+  border-bottom: none;
+  border-radius: 12px 12px 0 0;
+}
+
+.frameDots {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.frameDot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--rule-strong);
+}
+
+.frameDot:nth-child(1) {
+  background: #c94f4f;
+}
+.frameDot:nth-child(2) {
+  background: #c9a95b;
+}
+.frameDot:nth-child(3) {
+  background: #7fae6b;
+}
+
+.frameTitle {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+}
+
+.frameActions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.frameLink,
+.frameReset {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 0.4rem 0.7rem;
+  transition:
+    color 150ms ease,
+    border-color 150ms ease,
+    background-color 150ms ease;
+}
+
+.frameLink:hover,
+.frameReset:hover {
+  color: var(--rubric);
+  border-color: rgba(168, 22, 42, 0.4);
+  background: rgba(168, 22, 42, 0.05);
+}
+
+.frameWrap {
+  border: 1px solid var(--rule-strong);
+  border-radius: 0 0 12px 12px;
+  box-shadow: var(--shadow-plate-lift);
+  overflow: hidden;
+  background: #0c0d11;
+}
+
+/* The app is a desktop studio. On narrow screens we render the iframe at a
+   fixed landscape size and scale it down to fit, then overlay a rotate
+   prompt so mobile visitors know to turn their phone sideways. */
+.frameScaler {
+  position: relative;
+  width: 100%;
+  height: min(78vh, 760px);
+  background: #0c0d11;
+}
+
+.frame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #0c0d11;
+}
+
+.rotateOverlay {
+  display: none;
+}
+
+@media (orientation: portrait) and (max-width: 640px) {
+  .frameScaler {
+    overflow: hidden;
+  }
+
+  /* Desktop-size render, scaled down to the phone width. 4:3-ish stage so the
+     whole app (sidebar + main) is visible as a miniature preview. */
+  .frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1100px;
+    height: 720px;
+    transform-origin: top left;
+    transform: scale(calc(100vw / 1100));
+    pointer-events: none; /* preview only — rotate to interact */
+  }
+
+  .rotateOverlay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    padding: 1.5rem;
+    text-align: center;
+    background:
+      radial-gradient(circle at 50% 40%, rgba(230, 25, 60, 0.14), transparent 55%),
+      rgba(9, 9, 11, 0.72);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    cursor: pointer;
+  }
+
+  .rotateIcon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 1px solid rgba(244, 238, 226, 0.25);
+    color: var(--rubric);
+    background: rgba(230, 25, 60, 0.08);
+    animation: rotateNudge 2.2s var(--ease-settle) infinite;
+  }
+
+  .rotateText {
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--paper);
+  }
+
+  .rotateSub {
+    max-width: 20rem;
+    font-size: 0.82rem;
+    line-height: 1.55;
+    color: rgba(244, 238, 226, 0.65);
+  }
+}
+
+@media (orientation: landscape) and (max-height: 560px) {
+  .frame,
+  .frameScaler,
+  .framePlaceholder {
+    height: calc(100vh - 4rem);
+  }
+}
+
+@keyframes rotateNudge {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(90deg);
+  }
+}
+
+.framePlaceholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: min(78vh, 760px);
+  background:
+    radial-gradient(circle at 50% 45%, rgba(230, 25, 60, 0.08), transparent 60%),
+    #0c0d11;
+}
+
+.framePlaceholderText {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(244, 238, 226, 0.5);
+  animation: placeholderPulse 1.6s var(--ease-settle) infinite;
+}
+
+@keyframes placeholderPulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+.frameNote {
+  margin-top: 1.25rem;
+  text-align: center;
+  font-size: 0.88rem;
+  color: var(--ink-faint);
+}
+
+.frameNote strong {
+  color: var(--rubric);
+  font-weight: 700;
+}
+
+/* ---------- CTA ---------- */
+
+.cta {
+  padding-block: clamp(4rem, 9vw, 6rem);
+  background: var(--paper-deep);
+  border-top: 1px solid var(--rule);
+}
+
+.ctaInner {
+  max-width: 38rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.ctaTitle {
+  font-size: clamp(1.8rem, 4vw, 2.7rem);
+  text-wrap: balance;
+}
+
+.ctaLede {
+  margin: 1rem auto 2rem;
+  color: var(--ink-soft);
+}
+
+.ctaRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.ctaBtn {
+  box-shadow: 0 8px 30px rgba(230, 25, 60, 0.3);
+}

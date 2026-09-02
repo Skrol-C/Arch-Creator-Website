@@ -8,23 +8,28 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "deploy": "npm run build && wrangler pages deploy dist --project-name arch-creator-website"
+    "demo:sync": "node scripts/sync-demo-app.mjs",
+    "deploy": "npm run demo:sync && npm run build && wrangler pages deploy dist --project-name archstudios"
   },
   "dependencies": {
+    "@freemius/checkout": "^1.5.0",
+    "i18next": "^26.4.0",
     "lenis": "^1.3.26",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
+    "react-i18next": "^17.0.12",
     "react-icons": "^5.7.0",
-    "react-router-dom": "^7.18.2"
+    "react-router-dom": "^7.18.3"
   },
   "devDependencies": {
     "@types/node": "^24.13.3",
-    "@types/react": "^19.2.17",
-    "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^6.0.4",
-    "oxlint": "^1.75.0",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.5",
+    "@vitejs/plugin-react": "^6.1.1",
+    "oxlint": "^1.80.0",
     "playwright": "^1.62.1",
+    "pngjs": "^7.0.0",
     "typescript": "~6.0.2",
-    "vite": "^8.2.0"
+    "vite": "^8.2.2"
   }
 }

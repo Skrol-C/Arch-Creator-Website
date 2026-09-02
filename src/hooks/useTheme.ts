@@ -4,10 +4,6 @@ export type Theme = 'light' | 'dark'
 
 const STORAGE_KEY = 'theme'
 
-function systemPref(): Theme {
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-}
-
 function initialTheme(): Theme {
   try {
     const stored = localStorage.getItem(STORAGE_KEY)
@@ -15,7 +11,8 @@ function initialTheme(): Theme {
   } catch {
     /* ignore */
   }
-  return systemPref()
+  // Default to light mode regardless of system preference.
+  return 'light'
 }
 
 export function useTheme() {
@@ -29,7 +26,7 @@ export function useTheme() {
       /* ignore */
     }
     const meta = document.querySelector('meta[name="theme-color"]')
-    if (meta) meta.setAttribute('content', theme === 'dark' ? '#0f1015' : '#fdfbf7')
+    if (meta) meta.setAttribute('content', theme === 'dark' ? '#191512' : '#f4eee2')
   }, [theme])
 
   const toggle = () => setTheme((t) => (t === 'light' ? 'dark' : 'light'))

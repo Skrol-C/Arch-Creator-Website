@@ -1,6 +1,8 @@
 # Cloudflare Pages SPA fallback — explicit React Router routes
+/explore   /index.html  200
 /features  /index.html  200
 /pricing   /index.html  200
+/download  /index.html  200
 /about     /index.html  200
 /changelog /index.html  200
 /roadmap   /index.html  200

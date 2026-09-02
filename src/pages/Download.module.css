@@ -1,0 +1,262 @@
+.header {
+  padding-top: calc(var(--nav-h) + clamp(4rem, 10vh, 6.5rem));
+  padding-bottom: clamp(3rem, 6vh, 4.5rem);
+}
+
+.headerInner {
+  max-width: 46rem;
+}
+
+.title {
+  margin-top: 1rem;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  letter-spacing: -0.02em;
+}
+
+.title em {
+  font-style: italic;
+  color: var(--rubric);
+}
+
+.lede {
+  margin-top: 1.2rem;
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  color: var(--ink-soft);
+  max-width: 40rem;
+  line-height: 1.75;
+}
+
+/* ---------- Platform cards ---------- */
+
+.stage {
+  padding-top: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  align-items: stretch;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-radius: 2rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+  padding: 2rem;
+  transition:
+    transform 0.3s var(--ease-settle),
+    box-shadow 0.3s var(--ease-settle),
+    border-color 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px -18px rgba(0, 0, 0, 0.18);
+  border-color: var(--rule-strong);
+}
+
+/* Icon chip — big rounded square, per-OS tint */
+.cardIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 1.25rem;
+  border: 1px solid var(--rule);
+  margin-bottom: 1.75rem;
+}
+
+.osLogo {
+  width: 2.6rem;
+  height: 2.6rem;
+}
+
+.chipMac {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.chipWin {
+  background: #eef4fc;
+  color: #0078d6;
+}
+
+.chipLin {
+  background: #fdf6e6;
+  color: #f0a500;
+}
+
+.chipLin .osLogo {
+  width: 2.9rem;
+  height: 2.9rem;
+}
+
+.cardName {
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.cardLine {
+  margin-top: 0.3rem;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  flex-grow: 1;
+}
+
+/* Variant buttons */
+
+.variants {
+  margin-top: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  width: 100%;
+}
+
+.variant {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  text-align: left;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 0.9rem;
+  padding: 1rem 1.1rem;
+  transition:
+    border-color 200ms ease,
+    transform 200ms var(--ease-settle),
+    box-shadow 200ms var(--ease-settle),
+    background-color 200ms ease,
+    color 200ms ease;
+}
+
+.variant:not(:disabled):hover {
+  background: var(--rubric);
+  border-color: var(--rubric);
+  box-shadow: 0 10px 24px -10px rgba(230, 25, 60, 0.5);
+  transform: translateY(-2px);
+}
+
+.variant:not(:disabled):hover .variantLabel {
+  color: #fff;
+}
+
+.variant:not(:disabled):hover .variantNote {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.variant:not(:disabled):hover > svg {
+  color: #fff;
+}
+
+.variant:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.variantInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.variantLabel {
+  font-size: 0.98rem;
+  font-weight: 700;
+  transition: color 200ms ease;
+}
+
+.variantNote {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  transition: color 200ms ease;
+}
+
+.variant > svg {
+  flex: none;
+  color: var(--rubric);
+  transition: color 200ms ease;
+}
+
+.variantSoon {
+  flex: none;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sepia);
+  border: 1px dashed var(--rule-strong);
+  border-radius: 999px;
+  padding: 0.25rem 0.6rem;
+}
+
+.spin {
+  animation: spin 900ms linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- Auto-detect ---------- */
+
+.detectRow {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: var(--paper-raised);
+  border: 1px solid var(--rule-strong);
+  border-radius: 1.25rem;
+  box-shadow: var(--shadow-plate);
+  padding: 1.25rem 1.5rem;
+}
+
+.detectLabel {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+
+.detectLabel strong {
+  color: var(--rubric);
+  font-weight: 700;
+}
+
+.footnote {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+  max-width: 40rem;
+  margin-inline: auto;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 64rem) {
+  .grid {
+    grid-template-columns: 1fr;
+    max-width: 30rem;
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 40rem) {
+  .detectRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

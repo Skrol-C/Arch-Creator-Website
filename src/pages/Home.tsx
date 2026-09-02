@@ -1,210 +1,162 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { LuArrowRight, LuCheck } from 'react-icons/lu'
-import { home, manuscript, site, urls } from '../data/content'
+import { LuArrowRight } from 'react-icons/lu'
+import { home } from '../data/content'
 import { Reveal } from '../components/ui/Reveal'
+import { InkWorld } from '../components/ui/InkWorld'
+import { DownloadButton } from '../components/ui/DownloadButton'
+import { prefersReducedMotion, useLazyLoad } from '../hooks/useInView'
+import { useSeo } from '../hooks/useSeo'
+import { useLocale } from '../hooks/useLocale'
 import styles from './Home.module.css'
 
 export function Home() {
-  const { hero } = home
+  const [worldP, setWorldP] = useState(0.35)
+  const { ref: monitorRef, shouldLoad: showMonitor } = useLazyLoad<HTMLDivElement>()
+  const { t, tk } = useLocale()
+
+  useSeo({
+    title: 'Arch Studios — Worlds, built to last',
+    description:
+      'Arch Creator is the offline worldbuilding and writing app for storytellers. Worlds, characters, plot boards, and a manuscript that never leaves your device.',
+    path: '/',
+  })
+
+  // The world forms as you scroll the hero away
+  useEffect(() => {
+    if (prefersReducedMotion()) {
+      setWorldP(1)
+      return
+    }
+    const onScroll = () => {
+      const y = window.scrollY
+      const k = Math.min(1, y / window.innerHeight)
+      setWorldP(0.35 + k * 0.65)
+    }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
     <>
+      {/* === Hero: the world born from ink === */}
       <section className={styles.hero}>
-        <div className={styles.orbit} aria-hidden="true">
-          <span className={styles.ringA} />
-          <span className={styles.ringB} />
-          <span className={styles.tickN} />
-          <span className={styles.tickE} />
-          <span className={styles.tickS} />
-          <span className={styles.tickW} />
-          <span className={styles.needle} />
-        </div>
-
+        <InkWorld progress={worldP} className={styles.ink} />
         <div className={`shell ${styles.heroInner}`}>
-          <Reveal>
-            <p className={styles.badge}>{hero.badge}</p>
-          </Reveal>
-          <Reveal delay={80}>
-            <h1 className={styles.title}>
-              {hero.title[0]}
-              <br />
-              <em>{hero.title[1]}</em>
-            </h1>
-          </Reveal>
-          <Reveal delay={160}>
-            <p className={styles.lede}>{hero.lede}</p>
-          </Reveal>
-          <Reveal delay={240}>
-            <div className={styles.ctaRow}>
-              <a href={urls.download} className="btn btn-primary">
-                {hero.ctaPrimary.label}
-                <LuArrowRight className="chev" size={14} />
-              </a>
-              <Link to={hero.ctaSecondary.to} className="btn btn-ghost">
-                {hero.ctaSecondary.label}
-              </Link>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className={styles.pills} aria-label="At a glance">
-        <div className="shell">
-          <Reveal>
-            <ul className={styles.pillList}>
-              {home.pills.map((p) => (
-                <li key={p} className={styles.pill}>
-                  <LuCheck size={13} className={styles.pillIcon} />
-                  {p}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="shell">
-          <Reveal>
-            <div className="section-head section-head--center">
-              <p className="kicker">The studio, on your desk</p>
-              <h2 className="section-title">
-                A home for the <em>whole</em> process.
-              </h2>
-              <p className="section-lede">
-                Every thread of your world — calendar, character, chapter — lives together in one calm,
-                offline place. Here is Arch Studio, mid-draft.
-              </p>
-            </div>
-          </Reveal>
-
-          <Reveal delay={120}>
-            <figure className={styles.mock} aria-label={`${site.product} writing interface mockup`}>
-              <div className={styles.mockChrome}>
-                <span className={styles.chromeDot} />
-                <span className={styles.chromeDot} />
-                <span className={styles.chromeDot} />
-                <span className={styles.chromeTitle}>{manuscript.title}</span>
-              </div>
-              <div className={styles.mockBody}>
-                <img
-                  src="/screenshots/studio.png"
-                  alt="The Arch Studio writing editor in Arch-Creator"
-                  className={styles.mockShot}
-                  width={1280}
-                  height={800}
-                />
-              </div>
-              <div className={styles.mockFoot}>
-                {manuscript.stats.map((s) => (
-                  <span key={s} className={styles.chip}>
-                    {s}
-                  </span>
-                ))}
-                <span className={`${styles.chip} ${styles.chipAccent}`}>Saved · offline</span>
-              </div>
-            </figure>
-          </Reveal>
-
-          <Reveal delay={80}>
-            <p className={styles.exportRow}>
-              <span className={styles.exportLabel}>Exports</span>
-              <span className={styles.exportItems}>.docx&ensp;·&ensp;.epub&ensp;·&ensp;.pdf</span>
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className={`section ${styles.motion}`}>
-        <div className="shell">
-          <Reveal>
-            <div className="section-head section-head--center">
-              <p className="kicker">In motion</p>
-              <h2 className="section-title">
-                The app, <em>in motion</em>.
-              </h2>
-              <p className="section-lede">
-                Arch-Creator is alive — from the moment it boots to the way a world opens. A short
-                look at the choreography, straight from the app.
-              </p>
-            </div>
-          </Reveal>
-          <Reveal delay={120}>
-            <figure className={styles.motionFrame}>
-              <video
-                className={styles.motionVideo}
-                src="/video/app-montage.webm"
-                poster="/video/app-poster.jpg"
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="auto"
-              >
-                Your browser does not support embedded video —{' '}
-                <a href="/video/app-montage.webm" download>
-                  watch the clip
-                </a>{' '}
-                instead.
-              </video>
-              <figcaption className={styles.motionCaption}>
-                Loading screen &rarr; your world &rarr; where the story lives
-              </figcaption>
-            </figure>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className={`section ${styles.modules}`}>
-        <div className="shell">
-          <Reveal>
-            <div className="section-head">
-              <p className="kicker">Inside Arch-Creator</p>
-              <h2 className="section-title">
-                The pieces of a <em>world</em>.
-              </h2>
-            </div>
-          </Reveal>
-          <div className={styles.moduleGrid}>
-            {home.modules.map((m, i) => (
-              <Reveal key={m.name} delay={i * 90} as="article" className={styles.moduleCard}>
-                <span className={styles.moduleIcon}>
-                  <m.icon size={20} />
-                </span>
-                <h3 className={styles.moduleName}>{m.name}</h3>
-                <p className={styles.moduleBody}>{m.body}</p>
-              </Reveal>
-            ))}
+          <p className={styles.badge}>{t('hero.badge')}</p>
+          <h1 className={styles.title}>
+            {t('hero.title1')}
+            <br />
+            <em>{t('hero.title2')}</em>
+          </h1>
+          <p className={styles.lede}>{t('hero.lede')}</p>
+          <div className={styles.ctaRow}>
+            <DownloadButton>{t('hero.downloadFree')}</DownloadButton>
+            <Link to="/explore" className="btn btn-ghost">
+              {t('hero.tryDemo')}
+            </Link>
           </div>
         </div>
+        <div className={styles.scrollHint} aria-hidden="true">
+          <span className={styles.scrollLine} />
+          <span>{t('hero.scrollHint')}</span>
+        </div>
       </section>
 
-      <section className={`section ${styles.ethos}`}>
+      {/* === The app, on a real screen === */}
+      <section className={styles.screen}>
         <div className="shell">
           <Reveal>
-            <div className={styles.ethosInner}>
-              <p className="kicker">{home.ethos.kicker}</p>
-              <h2 className={styles.ethosTitle}>{home.ethos.title}</h2>
-              <p className={styles.ethosLede}>{home.ethos.lede}</p>
-              <blockquote className={styles.quote}>
-                <p className={styles.quoteText}>{home.quote.text}</p>
-                <cite className={styles.quoteCite}>{home.quote.author}</cite>
-              </blockquote>
+            <div className={styles.screenHead}>
+              <p className="kicker">{t(home.screenKicker)}</p>
+              <h2 className={styles.screenTitle}>
+                {t(home.screenTitle[0])} <em>{t(home.screenTitle[1])}</em>
+              </h2>
+              <p className={styles.screenLede}>{t(home.screenLede)}</p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={120}>
+            <div ref={monitorRef} className={styles.monitor}>
+              <div className={styles.monitorBezel}>
+                {showMonitor && (
+                  <video
+                    className={styles.monitorVideo}
+                    src="/video/app-montage.webm"
+                    poster="/video/app-poster.jpg"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="none"
+                  >
+                    {t(home.videoFallback)}
+                  </video>
+                )}
+              </div>
+              <div className={styles.monitorStand} aria-hidden="true" />
+              <div className={styles.monitorFoot} aria-hidden="true" />
             </div>
           </Reveal>
         </div>
       </section>
 
-      <section className={`section ${styles.cta}`}>
+      {/* === What's inside === */}
+      <section className={styles.inside}>
         <div className="shell">
           <Reveal>
-            <div className={styles.ctaCard}>
-              <h2 className={styles.ctaTitle}>{home.cta.title}</h2>
-              <p className={styles.ctaLede}>{home.cta.lede}</p>
-              <Link to={home.cta.primary.to} className="btn btn-primary">
-                {home.cta.primary.label}
+            <div className={styles.insideHead}>
+              <p className="kicker">{t(home.insideKicker)}</p>
+              <h2 className={styles.insideTitle}>
+                {t(home.insideTitle[0])} <em>{t(home.insideTitle[1])}</em>
+              </h2>
+            </div>
+          </Reveal>
+          <ol className={styles.index}>
+            {home.modules.map((m, i) => (
+              <Reveal key={m.name} delay={(i % 2) * 80} as="li" className={styles.indexRow}>
+                <span className={styles.indexNum}>{String(i + 1).padStart(2, '0')}</span>
+                <span className={styles.indexIcon}>
+                  <m.icon size={18} />
+                </span>
+                <h3 className={styles.indexName}>{tk(m.name)}</h3>
+                <p className={styles.indexBody}>{tk(m.body)}</p>
+              </Reveal>
+            ))}
+          </ol>
+          <Reveal>
+            <div className={styles.insideCta}>
+              <Link to="/explore" className="btn btn-primary">
+                {t(home.exploreLive)}
                 <LuArrowRight className="chev" size={14} />
               </Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* === Ethos + colophon CTA === */}
+      <section className={styles.colophon}>
+        <div className="shell">
+          <Reveal>
+            <div className={styles.colophonInner}>
+              <img src="/logo-upscayl.png" alt="" className={styles.colophonMark} width={54} height={54} />
+              <h2 className={styles.colophonTitle}>{t(home.cta.title)}</h2>
+              <p className={styles.colophonLede}>{t(home.cta.lede)}</p>
+              <div className={styles.ctaRow}>
+                <DownloadButton>{t(home.cta.download)}</DownloadButton>
+                <Link to="/pricing" className="btn btn-ghost">
+                  {t(home.cta.primary.label)}
+                </Link>
+              </div>
+              <p className={styles.colophonEnd}>
+                <span>Arch Studios</span>
+                <span aria-hidden="true">·</span>
+                <span>{t('misc.worldsBuiltToLast')}</span>
+                <span aria-hidden="true">·</span>
+                <span>{new Date().getFullYear()}</span>
+              </p>
             </div>
           </Reveal>
         </div>

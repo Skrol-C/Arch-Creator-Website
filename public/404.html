@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page not found — Arch Studios</title>
+    <meta name="robots" content="noindex" />
+    <script>
+      // Redirect unknown paths to the SPA so the custom 404 page renders.
+      sessionStorage.setItem('notFound', '1')
+      window.location.replace('/' + window.location.pathname.split('/').filter(Boolean).join('/') + window.location.search)
+    </script>
+  </head>
+  <body></body>
+</html>

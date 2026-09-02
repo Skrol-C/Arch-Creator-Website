@@ -1,0 +1,173 @@
+.story {
+  max-width: 54rem;
+  margin-inline: auto;
+  padding-block: clamp(3rem, 7vw, 5rem);
+}
+
+.kicker {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--rubric);
+}
+
+.title {
+  margin-top: 0.9rem;
+  font-size: clamp(1.8rem, 4vw, 2.7rem);
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.title em {
+  font-style: italic;
+  color: var(--rubric);
+}
+
+.lede {
+  margin-top: 0.9rem;
+  color: var(--ink-soft);
+  font-size: 1.02rem;
+  line-height: 1.7;
+  max-width: 38rem;
+}
+
+.chart {
+  margin-top: 2.5rem;
+  border-top: 1px solid var(--rule-strong);
+}
+
+.headRow {
+  display: grid;
+  grid-template-columns: minmax(9rem, 1fr) repeat(3, minmax(6rem, 1fr));
+  gap: 1rem;
+  padding: 0.75rem 0.25rem;
+  border-bottom: 1px solid var(--rule);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.headYear {
+  text-align: center;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(9rem, 1fr) repeat(3, minmax(6rem, 1fr));
+  gap: 1rem;
+  align-items: center;
+  padding: 1.05rem 0.25rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.rowName {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.rowHot .rowName {
+  color: var(--rubric);
+}
+
+.bars {
+  display: contents;
+}
+
+.barWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.35rem;
+}
+
+.barTrack {
+  width: 100%;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: var(--rule);
+  overflow: hidden;
+}
+
+.barFill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--ink-faint), var(--sepia));
+  transition: width 120ms linear;
+}
+
+.barFillHot {
+  background: linear-gradient(90deg, var(--rubric-deep), var(--rubric));
+}
+
+.barVal {
+  font-variant-numeric: tabular-nums;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
+.rowHot .barVal {
+  color: var(--rubric);
+  font-weight: 700;
+}
+
+/* outcome */
+
+.outcome {
+  margin-top: 2.5rem;
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius-plate);
+  background: var(--paper-raised);
+  text-align: center;
+}
+
+.outcomeLabel {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}
+
+.outcomeAvg,
+.outcomeOurs {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 2.2rem;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.outcomeVersus {
+  margin-top: 0.6rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.outcomeOurs {
+  color: var(--rubric);
+}
+
+.outcomeSave {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
+  font-size: 1.05rem;
+  color: var(--ink);
+}
+
+.outcomeSave strong {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: var(--rubric);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .barFill {
+    transition: none;
+  }
+}

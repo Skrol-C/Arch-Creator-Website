@@ -1,89 +1,147 @@
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 import {
-  LuArrowUpRight,
-  LuArrowRight,
   LuCheck,
   LuMinus,
   LuDownload,
   LuRefreshCw,
   LuShieldCheck,
   LuStar,
+  LuChevronDown,
 } from 'react-icons/lu'
-import { pricing, urls } from '../data/content'
+import { pricing } from '../data/content'
 import { Reveal } from '../components/ui/Reveal'
+import { BuyButton, type PlanKey } from '../components/ui/BuyButton'
+import { DownloadButton } from '../components/ui/DownloadButton'
+import { Chapter } from '../components/ui/Chapter'
+import { CostStory } from '../components/ui/CostStory'
+import { useSeo } from '../hooks/useSeo'
+import { useLocale } from '../hooks/useLocale'
 import styles from './Pricing.module.css'
 
-const hrefFor = (key: string) =>
-  key === 'download' ? urls.download : key === 'proPurchase' ? urls.proPurchase : urls.quillPurchase
-
 const MatrixCell = ({ v }: { v: string }) => {
-  if (v === 'yes') return <LuCheck size={15} className={styles.mYes} aria-label="Yes" />
-  if (v === 'some') return <span className={styles.mSome} aria-label="Partial" />
-  return <LuMinus size={15} className={styles.mNo} aria-label="No" />
+  const { t } = useLocale()
+  if (v === 'yes') return <LuCheck size={15} className={styles.mYes} aria-label={t('pricing.matrixYes')} />
+  if (v === 'some') return <span className={styles.mSome} aria-label={t('pricing.matrixPartial')} />
+  return <LuMinus size={15} className={styles.mNo} aria-label={t('pricing.matrixNo')} />
+}
+
+const TierCard = ({ tier }: { tier: (typeof pricing.tiers)[number] }) => {
+  const { tk } = useLocale()
+  return (
+    <article
+      className={`${styles.tierCard} ${tier.badge ? styles.tierCardHot : ''}`}
+      style={{ '--tier-accent': tier.accent ?? 'var(--rule-strong)' } as React.CSSProperties}
+    >
+      {tier.badge && <span className={styles.tierBadge}>{tk(tier.badge)}</span>}
+      <header className={styles.tierHead}>
+        <h3 className={styles.tierName}>{tk(tier.name)}</h3>
+      </header>
+      <p className={styles.tierPrice}>
+        {tier.price}
+        <span className={styles.tierPer}>/{tk(tier.per)}</span>
+      </p>
+      <p className={styles.tierBlurb}>{tk(tier.blurb)}</p>
+
+      <ul className={styles.tierList}>
+        {(tier.includes ?? tier.highlights).map((inc) => (
+          <li key={inc} className={styles.tierItem}>
+            <LuCheck size={14} className={styles.tierCheck} />
+            {tk(inc)}
+          </li>
+        ))}
+      </ul>
+
+      <div className={styles.tierAction}>
+        {tier.action === 'download' ? (
+          <DownloadButton variant={tier.badge ? 'primary' : 'ghost'} className={styles.tierBtn}>
+            <LuDownload size={13} />
+            {tk(tier.cta.label)}
+          </DownloadButton>
+        ) : (
+          <BuyButton plan={tier.plan as PlanKey} variant={tier.badge ? 'primary' : 'ghost'} className={styles.tierBtn}>
+            {tk(tier.cta.label)}
+            <span className={styles.tierBtnPrice}>{tier.price}</span>
+          </BuyButton>
+        )}
+      </div>
+    </article>
+  )
 }
 
 export function Pricing() {
   const p = pricing
-  const maxCost = Math.max(...p.compare.costs.rows.flatMap((r) => r.values))
+  const { t, tk } = useLocale()
+
+  useSeo({
+    title: 'Pricing — Arch Creator',
+    description:
+      'Fair, one-time, yours. Free to start, then a single lifetime purchase: Keystone $60, Quill $30, or the Arch bundle $90. No subscriptions.',
+    path: '/pricing',
+  })
 
   return (
     <>
-      <section className={styles.header}>
+      <header className={styles.header}>
         <div className="shell">
           <Reveal>
             <div className={styles.headerInner}>
-              <p className="kicker">{p.header.kicker}</p>
-              <h1 className={styles.title}>{p.header.title}</h1>
-              <p className={styles.lede}>{p.header.lede}</p>
+              <p className="kicker">{tk(p.header.kicker)}</p>
+              <h1 className={styles.title}>{t(p.header.title)}</h1>
+              <p className={styles.lede}>{t(p.header.lede)}</p>
+            </div>
+          </Reveal>
+        </div>
+      </header>
+
+      {/* ---------- The rate card ---------- */}
+      <section className={`section ${styles.rateSection}`}>
+        <div className="shell">
+          <Reveal>
+            <div className={styles.rateHead}>
+              <p className="kicker">{tk(p.rateCardKicker)}</p>
+              <h2 className={styles.rateTitle}>
+                {t(p.rateCardTitle[0])} <em>{t(p.rateCardTitle[1])}</em>
+              </h2>
+            </div>
+          </Reveal>
+
+          <Reveal delay={80}>
+            <div className={styles.tierGrid}>
+              {p.tiers.map((t) => (
+                <TierCard key={t.name} tier={t} />
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal>
+            <p className={styles.rateFootnote}>{t(p.rateFootnote)}</p>
+          </Reveal>
+
+          {/* Guarantee strip */}
+          <Reveal delay={60}>
+            <div className={styles.guarantee}>
+              {p.guarantee.map((g) => (
+                <div key={g.strong} className={styles.guaranteeItem}>
+                  <LuShieldCheck size={18} />
+                  <span>
+                    <strong>{t(g.strong)}</strong>
+                    {t(g.suffix)}
+                  </span>
+                </div>
+              ))}
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* ---------- Tier cards ---------- */}
-      <section className="section">
-        <div className="shell">
-          <div className={styles.tierGrid}>
-            {p.tiers.map((t, i) => (
-              <Reveal key={t.name} delay={i * 110} as="article" className={`${styles.tier} ${t.highlight ? styles.tierHot : ''}`}>
-                {t.highlight && <span className={styles.hotTag}>Most popular</span>}
-                <p className={`${styles.tierName} ${t.highlight ? styles.tierNameHot : ''}`}>{t.name}</p>
-                <p className={styles.price}>
-                  {t.price}
-                  <span className={styles.per}>/{t.per}</span>
-                </p>
-                <p className={`${styles.blurb} ${t.highlight ? styles.blurbHot : ''}`}>{t.blurb}</p>
-                <ul className={styles.highlights}>
-                  {t.highlights.map((h) => (
-                    <li key={h} className={styles.highlight}>
-                      <LuCheck size={14} className={styles.hlCheck} />
-                      {h}
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href={hrefFor(t.cta.href)}
-                  target="_blank"
-                  rel="noreferrer"
-                  className={`btn ${t.highlight ? 'btn-primary' : 'btn-ghost'} ${styles.tierCta}`}
-                >
-                  {t.cta.label}
-                  <LuArrowUpRight size={14} />
-                </a>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ---------- Free vs Pro table ---------- */}
+      {/* ---------- Free vs Keystone ---------- */}
       <section className={`section ${styles.sectionAlt}`}>
         <div className="shell">
           <Reveal>
             <div className="section-head">
-              <p className="kicker">Comparison</p>
-              <h2 className="section-title">{p.table.title}</h2>
-              <p className="section-lede">{p.table.lede}</p>
+              <p className="kicker">{tk(p.table.kicker)}</p>
+              <h2 className="section-title">{t(p.table.title)}</h2>
+              <p className="section-lede">{t(p.table.lede)}</p>
             </div>
           </Reveal>
           <Reveal>
@@ -91,22 +149,22 @@ export function Pricing() {
               <table className={styles.table}>
                 <thead>
                   <tr>
-                    <th className={styles.thLabel}>Feature</th>
-                    <th className={styles.thFree}>{p.tiers[0].name}</th>
-                    <th className={styles.thPro}>{p.tiers[1].name}</th>
+                    <th className={styles.thLabel}>{t(p.table.thFeature)}</th>
+                    <th className={styles.thFree}>{tk(p.tiers[0].name)}</th>
+                    <th className={styles.thPro}>{tk(p.tiers[1].name)}</th>
                   </tr>
                 </thead>
                 <tbody>
                   {p.table.groups.map((g) => (
                     <Fragment key={g.name}>
                       <tr className={styles.groupRow}>
-                        <td colSpan={3}>{g.name}</td>
+                        <td colSpan={3}>{tk(g.name)}</td>
                       </tr>
                       {g.rows.map((r) => (
                         <tr key={r.label}>
-                          <td className={styles.tdLabel}>{r.label}</td>
-                          <td className={styles.tdFree}>{r.free}</td>
-                          <td className={styles.tdPro}>{r.pro}</td>
+                          <td className={styles.tdLabel}>{tk(r.label)}</td>
+                          <td className={styles.tdFree}>{tk(r.free)}</td>
+                          <td className={styles.tdPro}>{tk(r.pro)}</td>
                         </tr>
                       ))}
                     </Fragment>
@@ -118,222 +176,82 @@ export function Pricing() {
         </div>
       </section>
 
-      {/* ---------- Free & Pro panels ---------- */}
-      <section className="section">
-        <div className="shell">
-          <div className={styles.planGrid}>
-            <Reveal as="article" className={styles.planFree}>
-              <p className={styles.planKicker}>{p.free.kicker}</p>
-              <h2 className={styles.planTitle}>{p.free.title}</h2>
-              <p className={styles.planLede}>{p.free.lede}</p>
-              <ul className={styles.planList}>
-                {p.free.items.map((item) => (
-                  <li key={item} className={styles.planItem}>
-                    <LuCheck size={15} className={styles.hlCheck} />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <a
-                href={hrefFor(p.free.cta.href)}
-                target="_blank"
-                rel="noreferrer"
-                className={`btn btn-ghost ${styles.planCta}`}
-              >
-                <LuDownload size={14} />
-                {p.free.cta.label}
-              </a>
-            </Reveal>
+      {/* ---------- Quill chapter ---------- */}
+      <Chapter
+        num="II"
+        kicker={tk(p.quill.kicker)}
+        title={t(p.quill.title)}
+        lede={t(p.quill.lede)}
+        flip
+      >
+        <blockquote className={styles.quillQuote}>
+          <LuStar size={16} className={styles.quillStar} />
+          {t(p.quill.quote)}
+        </blockquote>
 
-            <Reveal as="article" className={styles.planPro} delay={120}>
-              <p className={styles.planKickerHot}>{p.pro.kicker}</p>
-              <h2 className={styles.planTitleHot}>{p.pro.title}</h2>
-              <p className={styles.planPrice}>
-                {p.pro.price}
-                <span className={styles.planPer}>/{p.pro.per}</span>
-              </p>
-              <p className={styles.planLedeHot}>{p.pro.lede}</p>
-              <ul className={styles.planListHot}>
-                {p.pro.items.map((item) => (
-                  <li key={item} className={styles.planItemHot}>
-                    <LuCheck size={15} className={styles.hlCheckHot} />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <a
-                href={hrefFor(p.pro.cta.href)}
-                target="_blank"
-                rel="noreferrer"
-                className={`btn btn-primary ${styles.planCta}`}
-              >
-                {p.pro.cta.label}
-                <LuArrowRight className="chev" size={14} />
-              </a>
-            </Reveal>
-          </div>
+        <div className={styles.hats}>
+          {p.quill.hats.map((hat) => (
+            <article key={hat.name} className={styles.hat}>
+              <span className={styles.hatIcon}>
+                <hat.icon size={18} />
+              </span>
+              <h3 className={styles.hatName}>{tk(hat.name)}</h3>
+              <p className={styles.hatBody}>{tk(hat.body)}</p>
+            </article>
+          ))}
         </div>
-      </section>
 
-      {/* ---------- Quill ---------- */}
-      <section id="quill" className={styles.quill}>
-        <div className="shell">
-          <Reveal>
-            <div className={styles.quillHead}>
-              <p className={styles.quillKicker}>{p.quill.kicker}</p>
-              <h2 className={styles.quillTitle}>{p.quill.title}</h2>
-              <p className={styles.quillLede}>{p.quill.lede}</p>
-            </div>
-          </Reveal>
+        <ul className={styles.quillList}>
+          {p.quill.learns.map((l) => (
+            <li key={l} className={styles.quillListItem}>
+              <LuCheck size={15} className={styles.quillCheck} />
+              {tk(l)}
+            </li>
+          ))}
+        </ul>
 
-          <Reveal>
-            <blockquote className={styles.quillQuote}>
-              <LuStar size={16} className={styles.quillStar} />
-              {p.quill.quote}
-            </blockquote>
-          </Reveal>
-
-          <div className={styles.hats}>
-            {p.quill.hats.map((hat, i) => (
-              <Reveal key={hat.name} delay={i * 80} as="article" className={styles.hat}>
-                <span className={styles.hatIcon}>
-                  <hat.icon size={20} />
-                </span>
-                <h3 className={styles.hatName}>{hat.name}</h3>
-                <p className={styles.hatBody}>{hat.body}</p>
-              </Reveal>
-            ))}
-          </div>
-
-          <div className={styles.quillSplit}>
-            <Reveal>
-              <div className={styles.quillCol}>
-                <h3 className={styles.quillSub}>How Quill learns</h3>
-                <ul className={styles.quillList}>
-                  {p.quill.learns.map((l) => (
-                    <li key={l} className={styles.quillListItem}>
-                      <LuCheck size={15} className={styles.quillCheck} />
-                      {l}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
-            <Reveal delay={120}>
-              <img
-                src="/screenshots/quill-window.png"
-                alt="The Quill continuity pane in Arch-Creator"
-                className={styles.quillShot}
-                loading="lazy"
-                width={1440}
-                height={900}
-              />
-            </Reveal>
-          </div>
-
-          <div className={styles.quillSplit}>
-            <Reveal>
-              <div className={styles.quillCol}>
-                <h3 className={styles.quillSub}>Today</h3>
-                <ul className={styles.quillList}>
-                  {p.quill.today.map((l) => (
-                    <li key={l} className={styles.quillListItem}>
-                      <span className={styles.quillDot} />
-                      {l}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
-            <Reveal delay={120}>
-              <div className={styles.quillCol}>
-                <h3 className={styles.quillSub}>On the horizon</h3>
-                <ul className={styles.quillList}>
-                  {p.quill.horizon.map((l) => (
-                    <li key={l} className={styles.quillListItem}>
-                      <span className={styles.quillDot} />
-                      {l}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
-          </div>
-
-          <Reveal>
-            <div className={styles.quillCta}>
-              <p className={styles.quillNote}>{p.quill.note}</p>
-              <a
-                href={hrefFor(p.quill.cta.href)}
-                target="_blank"
-                rel="noreferrer"
-                className={`btn btn-primary ${styles.quillBtn}`}
-              >
-                {p.quill.cta.label}
-                <span className={styles.quillPrice}>{p.quill.price}</span>
-              </a>
-            </div>
-          </Reveal>
+        <div className={styles.quillCta}>
+          <p className={styles.quillNote}>{t(p.quill.note)}</p>
+          <BuyButton plan="quill">
+            {tk(p.quill.cta.label)}
+            <span className={styles.quillPrice}>{p.quill.price}</span>
+          </BuyButton>
         </div>
-      </section>
+      </Chapter>
 
-      {/* ---------- Compare ---------- */}
+      {/* ---------- Compare appendix ---------- */}
       <section id="compare" className={`section ${styles.compare}`}>
         <div className="shell">
           <Reveal>
             <div className="section-head section-head--center">
-              <p className="kicker">{p.compare.kicker}</p>
-              <h2 className="section-title">{p.compare.title}</h2>
-              <p className="section-lede">{p.compare.lede}</p>
+              <p className="kicker">{tk(p.compare.kicker)}</p>
+              <h2 className="section-title">{t(p.compare.title)}</h2>
+              <p className="section-lede">{t(p.compare.lede)}</p>
             </div>
           </Reveal>
 
           <div className={styles.tools}>
             {p.compare.tools.map((tool, i) => (
               <Reveal key={tool.name} delay={i * 60} as="article" className={`${styles.tool} ${tool.highlight ? styles.toolHot : ''}`}>
-                <p className={styles.toolName}>{tool.name}</p>
-                <span className={styles.toolModel}>{tool.model}</span>
+                <p className={styles.toolName}>{tk(tool.name)}</p>
+                <span className={styles.toolModel}>{tk(tool.model)}</span>
                 <p className={styles.toolPrice}>{tool.price}</p>
-                <span className={styles.toolNote}>{tool.note}</span>
+                <span className={styles.toolNote}>{tk(tool.note)}</span>
               </Reveal>
             ))}
           </div>
 
           <Reveal>
-            <div className={styles.costs}>
-              <h3 className={styles.costsTitle}>{p.compare.costs.title}</h3>
-              <p className={styles.costsLede}>{p.compare.costs.lede}</p>
-              <div className={styles.costsHead}>
-                <span className={styles.costsNameHead}>Tool</span>
-                {p.compare.costs.years.map((y) => (
-                  <span key={y} className={styles.costsYearHead}>
-                    {y} {y === 1 ? 'year' : 'years'}
-                  </span>
-                ))}
-              </div>
-              {p.compare.costs.rows.map((row) => (
-                <div key={row.name} className={`${styles.costRow} ${row.highlight ? styles.costRowHot : ''}`}>
-                  <span className={styles.costName}>{row.name}</span>
-                  {row.values.map((v, i) => (
-                    <span key={i} className={styles.costVal}>
-                      ${v.toLocaleString()}
-                    </span>
-                  ))}
-                  <span className={styles.costBar}>
-                    <span
-                      className={`${styles.costBarFill} ${row.highlight ? styles.costBarFillHot : ''}`}
-                      style={{ width: `${(Math.max(...row.values) / maxCost) * 100}%` }}
-                    />
-                  </span>
-                </div>
-              ))}
-            </div>
+            <CostStory
+              years={p.compare.costs.years}
+              rows={p.compare.costs.rows}
+            />
           </Reveal>
 
           <Reveal>
             <div className={styles.matrix}>
-              <h3 className={styles.matrixTitle}>{p.compare.matrix.title}</h3>
-              <p className={styles.matrixLede}>{p.compare.matrix.lede}</p>
+              <h3 className={styles.matrixTitle}>{t(p.compare.matrix.title)}</h3>
+              <p className={styles.matrixLede}>{t(p.compare.matrix.lede)}</p>
               <div className={styles.tableWrap}>
                 <table className={styles.table}>
                   <thead>
@@ -341,7 +259,7 @@ export function Pricing() {
                       <th className={styles.thLabel} />
                       {p.compare.matrix.columns.map((c, i) => (
                         <th key={c} className={`${styles.thM} ${i === 0 ? styles.thMHot : ''}`}>
-                          {c}
+                          {tk(c)}
                         </th>
                       ))}
                     </tr>
@@ -349,7 +267,7 @@ export function Pricing() {
                   <tbody>
                     {p.compare.matrix.rows.map((row) => (
                       <tr key={row.label}>
-                        <td className={styles.tdLabel}>{row.label}</td>
+                        <td className={styles.tdLabel}>{tk(row.label)}</td>
                         {row.values.map((v, i) => (
                           <td key={i} className={`${styles.tdM} ${i === 0 ? styles.tdMHot : ''}`}>
                             <MatrixCell v={v} />
@@ -364,8 +282,8 @@ export function Pricing() {
           </Reveal>
 
           <Reveal>
-            <p className={styles.compareWhy}>{p.compare.why}</p>
-            <p className={styles.compareFootnote}>{p.compare.footnote}</p>
+            <p className={styles.compareWhy}>{t(p.compare.why)}</p>
+            <p className={styles.compareFootnote}>{t(p.compare.footnote)}</p>
           </Reveal>
         </div>
       </section>
@@ -375,23 +293,24 @@ export function Pricing() {
         <div className="shell">
           <Reveal>
             <div className={styles.notesCard}>
-              <h2 className={styles.notesTitle}>{p.notes.title}</h2>
+              <img src="/logo-upscayl.png" alt="" className={styles.notesMark} width={32} height={32} />
+              <h2 className={styles.notesTitle}>{t(p.notes.title)}</h2>
               <ul className={styles.notesList}>
                 {p.notes.items.map((n) => (
                   <li key={n} className={styles.note}>
-                    {n}
+                    {t(n)}
                   </li>
                 ))}
               </ul>
               <div className={styles.badges}>
                 <span className={styles.badge}>
-                  <LuShieldCheck size={15} /> Secure checkout via Lemon Squeezy
+                  <LuShieldCheck size={15} /> {t('pricing.guarantee.0')} {t('pricing.guarantee.0By')}
                 </span>
                 <span className={styles.badge}>
-                  <LuRefreshCw size={15} /> In-app updates included
+                  <LuRefreshCw size={15} /> {t('pricing.guarantee.1')} {t('pricing.guarantee.1Forever')}
                 </span>
                 <span className={styles.badge}>
-                  <LuDownload size={15} /> Offline installer
+                  <LuDownload size={15} /> {t('pricing.guarantee.2')}
                 </span>
               </div>
             </div>
@@ -399,19 +318,61 @@ export function Pricing() {
 
           <Reveal delay={100}>
             <div className={styles.requirements}>
-              <p className={styles.reqHead}>System requirements</p>
+              <p className={styles.reqHead}>{t(p.reqHead)}</p>
               <ul className={styles.reqList}>
                 {p.requirements.map((r) => (
                   <li key={r} className={styles.req}>
                     <span className={styles.reqDot} />
-                    {r}
+                    {t(r)}
                   </li>
                 ))}
               </ul>
+              <p className={styles.macBadge}>{t(p.macBadge)}</p>
             </div>
           </Reveal>
         </div>
       </section>
+
+      {/* ---------- FAQ ---------- */}
+      <section className={`section ${styles.faq}`}>
+        <div className="shell">
+          <Reveal>
+            <div className="section-head section-head--center">
+              <p className="kicker">{tk(p.faq.kicker)}</p>
+              <h2 className="section-title">{t(p.faq.title)}</h2>
+              <p className="section-lede">{t(p.faq.lede)}</p>
+            </div>
+          </Reveal>
+
+          <div className={styles.faqList}>
+            {p.faq.items.map((item, i) => (
+              <Reveal key={item.q} delay={(i % 2) * 60}>
+                <FaqItem q={t(item.q)} a={t(item.a)} />
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
     </>
+  )
+}
+
+function FaqItem({ q, a }: { q: string; a: string }) {
+  const [open, setOpen] = useState(false)
+  return (
+    <div className={`${styles.faqItem} ${open ? styles.faqItemOpen : ''}`}>
+      <button
+        type="button"
+        className={styles.faqQ}
+        aria-expanded={open}
+        onClick={() => setOpen((v) => !v)}
+      >
+        <span>{q}</span>
+        <LuChevronDown size={16} className={`${styles.faqChev} ${open ? styles.faqChevOpen : ''}`} />
+      </button>
+      <div className={`${styles.faqA} ${open ? styles.faqAOpen : ''}`}>
+        <p>{a}</p>
+      </div>
+    </div>
   )
 }

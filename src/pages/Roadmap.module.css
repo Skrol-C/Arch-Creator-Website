@@ -31,9 +31,9 @@
 }
 
 .track {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-md);
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-plate);
   padding: 1.4rem 1.5rem;
 }
 
@@ -49,20 +49,20 @@
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--text);
+  color: var(--ink);
 }
 
 .trackPct {
   font-family: var(--font-serif);
   font-size: 1.3rem;
   font-weight: 700;
-  color: var(--brass);
+  color: var(--rubric);
 }
 
 .trackBar {
   height: 0.5rem;
   border-radius: 999px;
-  background: var(--line-soft);
+  background: var(--rule);
   overflow: hidden;
 }
 
@@ -70,7 +70,7 @@
   display: block;
   height: 100%;
   border-radius: 999px;
-  background: linear-gradient(90deg, var(--brass), var(--brass-bright));
+  background: linear-gradient(90deg, var(--rubric-deep), var(--rubric));
 }
 
 /* ---------- Timeline ---------- */
@@ -87,7 +87,7 @@
   top: 1.35rem;
   bottom: 1.5rem;
   width: 2px;
-  background: linear-gradient(to bottom, transparent, rgba(154, 107, 33, 0.35) 8%, rgba(154, 107, 33, 0.35) 92%, transparent);
+  background: linear-gradient(to bottom, transparent, rgba(168, 22, 42, 0.3) 8%, rgba(168, 22, 42, 0.3) 92%, transparent);
 }
 
 .phase {
@@ -107,15 +107,15 @@
   width: 2.65rem;
   height: 2.65rem;
   border-radius: 50%;
-  background: var(--brass);
-  color: var(--on-brass);
+  background: linear-gradient(160deg, var(--rubric-bright), var(--rubric-deep));
+  color: var(--on-rubric);
   font-family: var(--font-serif);
   font-weight: 700;
   font-size: 1.05rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 0 6px var(--bg);
+  box-shadow: 0 0 0 6px var(--paper);
   z-index: 1;
 }
 
@@ -140,23 +140,23 @@
 }
 
 .toneShipped {
-  color: var(--text-soft);
-  border: 1px solid var(--line);
+  color: var(--ink-soft);
+  border: 1px solid var(--rule);
 }
 
 .toneNext {
-  color: var(--on-brass);
-  background: var(--brass);
+  color: var(--on-rubric);
+  background: linear-gradient(160deg, var(--rubric-bright), var(--rubric));
 }
 
 .toneLater {
-  color: var(--brass-strong);
-  border: 1px solid rgba(154, 107, 33, 0.4);
+  color: var(--sepia);
+  border: 1px solid rgba(168, 22, 42, 0.35);
 }
 
 .phaseLine {
   margin-top: 0.5rem;
-  color: var(--text-soft);
+  color: var(--ink-soft);
   font-size: 0.9375rem;
 }
 
@@ -169,17 +169,20 @@
 
 .item {
   position: relative;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-md);
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-plate);
   padding: 1.5rem;
-  transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out), border-color 0.3s ease;
+  transition:
+    transform 0.3s var(--ease-settle),
+    box-shadow 0.3s var(--ease-settle),
+    border-color 0.3s ease;
 }
 
 .item:hover {
   transform: translateY(-3px);
-  box-shadow: var(--shadow-card);
-  border-color: rgba(154, 107, 33, 0.35);
+  box-shadow: var(--shadow-plate);
+  border-color: rgba(168, 22, 42, 0.35);
 }
 
 .itemIcon {
@@ -188,9 +191,10 @@
   justify-content: center;
   width: 2.6rem;
   height: 2.6rem;
-  border-radius: var(--radius-sm);
-  background: var(--brass-soft);
-  color: var(--brass-strong);
+  border-radius: var(--radius-btn);
+  border: 1px solid rgba(168, 22, 42, 0.3);
+  background: rgba(168, 22, 42, 0.07);
+  color: var(--rubric);
 }
 
 .itemTitle {
@@ -203,7 +207,7 @@
   margin-top: 0.5rem;
   font-size: 0.9375rem;
   line-height: 1.7;
-  color: var(--text-soft);
+  color: var(--ink-soft);
 }
 
 .tags {
@@ -218,9 +222,9 @@
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--brass-strong);
-  background: var(--brass-faint);
-  border: 1px solid var(--line);
+  color: var(--sepia);
+  background: var(--paper-deep);
+  border: 1px solid var(--rule);
   border-radius: 999px;
   padding: 0.3rem 0.7rem;
 }

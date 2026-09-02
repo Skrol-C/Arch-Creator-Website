@@ -5,17 +5,17 @@
     <link rel="icon" type="image/png" href="/favicon.png?v=3" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0f1015" />
+    <meta name="theme-color" content="#f4eee2" />
     <script>
       ;(function () {
         try {
           var t = localStorage.getItem('theme')
           if (t !== 'light' && t !== 'dark') {
-            t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+            t = 'light'
           }
           document.documentElement.setAttribute('data-theme', t)
           var meta = document.querySelector('meta[name="theme-color"]')
-          if (meta) meta.setAttribute('content', t === 'dark' ? '#0f1015' : '#fdfbf7')
+          if (meta) meta.setAttribute('content', t === 'dark' ? '#191512' : '#f4eee2')
         } catch (e) {}
       })()
     </script>
@@ -24,6 +24,29 @@
       content="Arch Studios — the studio behind Arch-Creator, a desktop worldbuilding and manuscript tool for writers."
     />
     <title>Arch Studios — Worlds, built to last</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Arch Creator",
+        "operatingSystem": "Windows, macOS, Linux (soon)",
+        "applicationCategory": "DesignApplication",
+        "applicationSubCategory": "Worldbuilding Software",
+        "description": "The offline worldbuilding and writing app for storytellers. Worlds, characters, plot boards, in-world calendars, and a manuscript that never leaves your device.",
+        "offers": [
+          { "@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "USD" },
+          { "@type": "Offer", "name": "Keystone", "price": "60", "priceCurrency": "USD" },
+          { "@type": "Offer", "name": "Quill", "price": "30", "priceCurrency": "USD" },
+          { "@type": "Offer", "name": "Arch bundle", "price": "90", "priceCurrency": "USD" }
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "Arch Studios",
+          "email": "arch.studios.we@gmail.com",
+          "url": "https://archstudios.dev"
+        }
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

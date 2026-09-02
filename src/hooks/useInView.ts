@@ -40,3 +40,35 @@ export function useInView<T extends HTMLElement>(options?: {
 
   return { ref, inView }
 }
+
+/**
+ * Lazy-mount: returns a ref + a boolean that flips true once the element is
+ * near the viewport (and stays true). Use to defer heavy media (videos,
+ * iframes) until the user is about to see them.
+ */
+export function useLazyLoad<T extends HTMLElement>(rootMargin = '400px') {
+  const ref = useRef<T>(null)
+  const [shouldLoad, setShouldLoad] = useState(false)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    if (typeof IntersectionObserver === 'undefined') {
+      setShouldLoad(true)
+      return
+    }
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoad(true)
+          io.disconnect()
+        }
+      },
+      { rootMargin, threshold: 0 },
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [rootMargin])
+
+  return { ref, shouldLoad }
+}
