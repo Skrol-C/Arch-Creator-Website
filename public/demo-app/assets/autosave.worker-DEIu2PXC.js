@@ -1,0 +1,1 @@
+(function(){"use strict";const e=self;e.onmessage=r=>{try{const s=JSON.stringify(r.data,null,2);e.postMessage({ok:!0,json:s})}catch(s){e.postMessage({ok:!1,error:s instanceof Error?s.message:String(s)})}}})();
