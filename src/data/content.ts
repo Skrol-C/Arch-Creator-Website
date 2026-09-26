@@ -26,6 +26,8 @@ import {
   LuMusic,
   LuApple,
   LuShare2,
+  LuSwords,
+  LuScrollText,
 } from 'react-icons/lu'
 import type { EnKey } from '../i18n/keys'
 
@@ -236,6 +238,7 @@ export const pricing = {
         'pricing.tiers.0.include.7',
         'pricing.tiers.0.include.8',
         'pricing.tiers.0.include.9',
+        'pricing.tiers.0.include.10',
       ],
       action: 'download',
       cta: { label: 'pricing.tiers.0.cta' },
@@ -259,6 +262,7 @@ export const pricing = {
         'pricing.tiers.1.include.7',
         'pricing.tiers.1.include.8',
         'pricing.tiers.1.include.9',
+        'pricing.tiers.1.include.10',
       ],
       action: 'checkout',
       plan: 'keystone',
@@ -349,6 +353,7 @@ export const pricing = {
           { label: 'pricing.table.group.3.row.1', free: 'pricing.table.group.3.row.1.free', pro: 'pricing.table.group.3.row.1.pro' },
           { label: 'pricing.table.group.3.row.2', free: 'pricing.table.group.3.row.2.free', pro: 'pricing.table.group.3.row.2.pro' },
           { label: 'pricing.table.group.3.row.3', free: 'pricing.table.group.3.row.3.free', pro: 'pricing.table.group.3.row.3.pro' },
+          { label: 'pricing.table.group.3.row.4', free: 'pricing.table.group.3.row.4.free', pro: 'pricing.table.group.3.row.4.pro' },
         ],
       },
       {
@@ -379,6 +384,8 @@ export const pricing = {
       { icon: LuDatabase, name: 'pricing.quill.hat.2.name', body: 'pricing.quill.hat.2.body' },
       { icon: LuGauge, name: 'pricing.quill.hat.3.name', body: 'pricing.quill.hat.3.body' },
       { icon: LuTrendingUp, name: 'pricing.quill.hat.4.name', body: 'pricing.quill.hat.4.body' },
+      { icon: LuSwords, name: 'pricing.quill.hat.5.name', body: 'pricing.quill.hat.5.body' },
+      { icon: LuScrollText, name: 'pricing.quill.hat.6.name', body: 'pricing.quill.hat.6.body' },
     ],
     learns: ['pricing.quill.learn.0', 'pricing.quill.learn.1', 'pricing.quill.learn.2'],
     today: ['pricing.quill.today.0', 'pricing.quill.today.1', 'pricing.quill.today.2', 'pricing.quill.today.3', 'pricing.quill.today.4'],
