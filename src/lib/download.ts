@@ -48,7 +48,14 @@ export async function resolveInstallerUrl(platform: PlatformId = 'windows'): Pro
   if (feed?.platforms) {
     for (const key of PLATFORM_KEYS[platform]) {
       const url = feed.platforms[key]?.url
-      if (url) return new URL(url, LATEST_JSON).href
+      if (url) {
+        const resolved = new URL(url, LATEST_JSON)
+        // Direct Mac downloads should be DMG installers when the release also publishes one.
+        if (platform === 'macos' && resolved.pathname.endsWith('.app.tar.gz') && feed.version) {
+          resolved.pathname = resolved.pathname.replace(/[^/]+\.app\.tar\.gz$/, `Arch.Creator_${feed.version}_aarch64.dmg`)
+        }
+        return resolved.href
+      }
     }
   }
   if (platform === 'windows') return FALLBACK_INSTALLER
