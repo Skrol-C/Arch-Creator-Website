@@ -31,7 +31,7 @@ async function getFeed(): Promise<ReleaseFeed | null> {
 /** Map a friendly platform id to the feed's keys. */
 const PLATFORM_KEYS: Record<PlatformId, string[]> = {
   windows: ['windows-x86_64', 'windows-x86_64-nsis'],
-  macos: ['darwin-x86_64', 'darwin-aarch64', 'darwin-universal'],
+  macos: ['darwin-aarch64', 'darwin-aarch64-app', 'darwin-x86_64', 'darwin-universal'],
   linux: ['linux-x86_64', 'linux-aarch64'],
 }
 
@@ -42,7 +42,7 @@ export function detectPlatform(): PlatformId {
   return 'windows'
 }
 
-/** Resolve the installer URL for a given platform, falling back to Windows (the shipped build). */
+/** Resolve the installer URL for a given platform. Never cross-fallback to Windows. */
 export async function resolveInstallerUrl(platform: PlatformId = 'windows'): Promise<string> {
   const feed = await getFeed()
   if (feed?.platforms) {
@@ -51,7 +51,8 @@ export async function resolveInstallerUrl(platform: PlatformId = 'windows'): Pro
       if (url) return new URL(url, LATEST_JSON).href
     }
   }
-  return FALLBACK_INSTALLER
+  if (platform === 'windows') return FALLBACK_INSTALLER
+  throw new Error(`No ${platform} build is currently available`)
 }
 
 /** True if the release feed has a real build for this platform. */

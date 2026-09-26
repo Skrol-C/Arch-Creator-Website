@@ -87,6 +87,8 @@ export function Download() {
     try {
       const url = await resolveInstallerUrl(platform)
       window.location.href = url
+    } catch (error) {
+      console.error(`No ${platform} build is available`, error)
     } finally {
       setBusy(null)
     }
